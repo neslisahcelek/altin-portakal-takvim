@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="tr"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antalya Altın Portakal Film Festivali - Takvim &amp; Çakışma Analizi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ea580c;
+      --primary-hover: #c2410c;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-conflict: #ef4444;
+      --accent-safe: #10b981;
+      --accent-warn: #f59e0b;
+      --accent-purple: #8b5cf6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #090d16;
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 50%, #1c1917 100%);
+      border-bottom: 1px solid #312e81;
+      padding: 28px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+    }
+
+    .container {
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .header-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .title-area h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #fb923c, #f97316, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title-area p {
+      color: #cbd5e1;
+      font-size: 13.5px;
+      margin-top: 4px;
+    }
+
+    .stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .stat-pill {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--card-border);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stat-pill strong {
+      color: #fb923c;
+    }
+
+    /* Tabs */
+    .tabs-wrapper {
+      background: #0f172a;
+      border-bottom: 1px solid var(--card-border);
+      padding: 12px 0;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      background: #1e293b;
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      background: #ea580c;
+      color: #fff;
+      border-color: #ea580c;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+    }
+
+    /* Controls */
+    .controls-panel {
+      background: #111827;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .day-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .day-btn {
+      background: #1e293b;
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .day-btn:hover {
+      background: #334155;
+      color: #fff;
+    }
+
+    .day-btn.active {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff;
+      border-color: #f97316;
+      box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
+    }
+
+    .filters-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-box {
+      background: #1e293b;
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      width: 220px;
+      outline: none;
+    }
+    .search-box:focus {
+      border-color: var(--primary);
+    }
+
+    .filter-select {
+      background: #1e293b;
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .badge-checkbox {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #cbd5e1;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Calendar Grid Matrix */
+    .calendar-container {
+      overflow-x: auto;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      background: #0f172a;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 30px;
+    }
+
+    .calendar-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1200px;
+      table-layout: fixed;
+    }
+
+    .calendar-table th {
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 14px 10px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      border-bottom: 2px solid #334155;
+      border-right: 1px solid #334155;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .calendar-table th:first-child {
+      width: 85px;
+      background: #111827;
+    }
+
+    .time-col {
+      width: 85px;
+      background: #111827;
+      color: #fb923c;
+      font-weight: 700;
+      font-size: 13.5px;
+      text-align: center;
+      vertical-align: middle;
+      border-right: 1px solid #334155;
+      border-bottom: 1px solid #1e293b;
+      padding: 10px 4px;
+    }
+
+    .calendar-table td {
+      border-right: 1px solid #1e293b;
+      border-bottom: 1px solid #1e293b;
+      vertical-align: top;
+      padding: 8px;
+      height: 110px;
+      background: rgba(15, 23, 42, 0.4);
+      transition: background 0.15s;
+    }
+
+    .calendar-table tr:hover td:not(.time-col) {
+      background: rgba(30, 41, 59, 0.45);
+    }
+
+    /* Event Card */
+    .event-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 10px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .event-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+      border-color: #64748b;
+    }
+
+    .event-card.has-conflict {
+      border-left: 4px solid var(--accent-conflict);
+    }
+
+    .event-card.single-screening {
+      background: linear-gradient(145deg, #1e293b, #2a1b24);
+    }
+
+    .event-card.highlighted {
+      outline: 2px solid #f97316;
+      box-shadow: 0 0 16px rgba(249, 115, 22, 0.5);
+    }
+
+    .event-card.selected-my-schedule {
+      border-color: #10b981;
+      background: #064e3b22;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .time-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: #38bdf8;
+      background: #0c4a6e44;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .conflict-pill {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .conflict-pill.clash {
+      background: #ef444433;
+      color: #f87171;
+      border: 1px solid #ef444455;
+    }
+
+    .conflict-pill.solo {
+      background: #10b98122;
+      color: #34d399;
+      border: 1px solid #10b98144;
+    }
+
+    .film-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      font-size: 11px;
+    }
+
+    .btn-buy {
+      background: #ea580c;
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      transition: background 0.15s;
+      display: inline-block;
+    }
+    .btn-buy:hover {
+      background: #f97316;
+    }
+
+    .btn-schedule-toggle {
+      background: #334155;
+      border: none;
+      color: #cbd5e1;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      transition: all 0.15s;
+    }
+    .btn-schedule-toggle:hover {
+      background: #475569;
+      color: #fff;
+    }
+    .btn-schedule-toggle.added {
+      background: #10b981;
+      color: #fff;
+    }
+
+    /* Modal / Popup for Event Detail */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal-card {
+      background: #1e293b;
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      max-width: 620px;
+      width: 100%;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #334155;
+      border: none;
+      color: #cbd5e1;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Conflict view */
+    .conflict-group {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .conflict-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1e293b;
+      margin-bottom: 12px;
+    }
+    .conflict-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #f87171;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .conflict-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .conflict-item {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Master Table View */
+    .table-container {
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow-x: auto;
+      margin-bottom: 30px;
+    }
+    .master-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    .master-table th {
+      background: #1e293b;
+      color: #f8fafc;
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 2px solid #334155;
+      font-weight: 700;
+    }
+    .master-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .master-table tr:hover td {
+      background: #1e293b44;
+    }
+
+    /* Alert Boxes */
+    .alert-box {
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13.5px;
+    }
+    .alert-danger {
+      background: #450a0a;
+      border: 1px solid #ef4444;
+      color: #fecaca;
+    }
+    .alert-info {
+      background: #0c4a6e;
+      border: 1px solid #0284c7;
+      color: #e0f2fe;
+    }
+    .alert-warning {
+      background: #451a03;
+      border: 1px solid #f97316;
+      color: #ffedd5;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .controls-panel {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="title-area">
+          <h1>🎬 63. Uluslararası Antalya Altın Portakal Film Festivali</h1>
+          <p>Festival Gösterim Programı, İnteraktif Takvim ve Çakışma Analizörü (24 - 31 Ekim 2026)</p>
+        </div>
+        <div class="stats-bar">
+          <div class="stat-pill">📅 <strong>6 Gün</strong> (25-30 Ekim)</div>
+          <div class="stat-pill">📍 <strong>6 Salon</strong></div>
+          <div class="stat-pill">🎥 <strong>77 Film</strong></div>
+          <div class="stat-pill">🎟️ <strong>196 Seans</strong></div>
+          <div class="stat-pill">⚡ <strong style="color: #ef4444;">50 Çakışma Dilimi</strong></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="tabs-wrapper">
+    <div class="container">
+      <div class="tabs">
+        <button class="tab-btn" onclick="switchView('calendar')">
+          <span>📅 Takvim / Salon Matrisi</span>
+        </button>
+        <button class="tab-btn" onclick="switchView('conflicts')">
+          <span>⚡ Çakışma Analizi &amp; Karşılaştırma</span>
+        </button>
+        <button class="tab-btn" onclick="switchView('table')">
+          <span>📋 Tüm Seanslar Tablosu (196)</span>
+        </button>
+        <button class="tab-btn active" onclick="switchView('my-schedule')">
+          <span>⭐ Seçtiğim Filmler &amp; Planlayıcı (<span id="myCount">0</span>)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main class="container" style="padding-top: 16px;">
+
+    <!-- Controls Bar -->
+    <div class="controls-panel">
+      <div>
+        <label style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">Gün Seçin:</label>
+        <div class="day-selector" id="daySelector">
+          <button class="day-btn" data-date="2026-10-25" onclick="selectDate('2026-10-25')">25 Ekim Paz (28)</button>
+          <button class="day-btn" data-date="2026-10-26" onclick="selectDate('2026-10-26')">26 Ekim Pzt (34)</button>
+          <button class="day-btn" data-date="2026-10-27" onclick="selectDate('2026-10-27')">27 Ekim Sal (31)</button>
+          <button class="day-btn active" data-date="2026-10-28" onclick="selectDate('2026-10-28')">28 Ekim Çar (35)</button>
+          <button class="day-btn" data-date="2026-10-29" onclick="selectDate('2026-10-29')">29 Ekim Per (35)</button>
+          <button class="day-btn" data-date="2026-10-30" onclick="selectDate('2026-10-30')">30 Ekim Cum (33)</button>
+        </div>
+      </div>
+
+      <div class="filters-group">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Film veya salon ara..." oninput="handleSearch()">
+        <label class="badge-checkbox">
+          <input type="checkbox" id="onlyClashCheckbox" onchange="handleFilterChange()">
+          <span>Sadece Çakışan Seanslar</span>
+        </label>
+        <label class="badge-checkbox">
+          <input type="checkbox" id="onlySingleCheckbox" onchange="handleFilterChange()">
+          <span>Tek Gösterimler (Kaçırma!)</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- VIEW 1: CALENDAR TIMETABLE MATRIX -->
+    <div id="viewCalendar" style="display: none;">
+      <div class="alert-box alert-info">
+        <span style="font-size: 18px;">💡</span>
+        <div>
+          <strong>Nasıl Kullanılır?</strong> Tablodaki her sütun festivalin bir salonunu, satırlar ise seans başlangıç saatlerini gösterir. 
+          <span style="color:#f87171; font-weight:700;">Kırmızı rozetli</span> seanslar o saatte diğer salonlarla çakışan filmlerdir. 
+          Bir filme tıklayarak filmin diğer günlerdeki alternatif seanslarını görebilir, <strong>⭐</strong> ikonuna basarak kendi festival programınıza ekleyebilirsiniz.
+        </div>
+      </div>
+
+      <div class="calendar-container">
+        <table class="calendar-table" id="calendarTable">
+          <thead>
+            <tr>
+              <th>Saat</th>
+              <th>AKM Aspendos</th>
+              <th>AKM Perge</th>
+              <th>Paribu Cineverse 4 (Migros)</th>
+              <th>Paribu Cineverse 7 (Migros)</th>
+              <th>TerraCity Cinema Pink 1</th>
+              <th>ÖzdilekPark Cinetime 1</th>
+            </tr>
+          </thead>
+          <tbody id="calendarBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- VIEW 2: CONFLICTS DETECTIVE -->
+    <div id="viewConflicts" style="display: none;">
+      <div class="alert-box alert-danger">
+        <span style="font-size: 18px;">⚠️</span>
+        <div>
+          <strong>Çakışma Analizi &amp; Kritik Tercihler:</strong> 
+          Aynı saatte birden fazla salonda başlayan seanslar aşağıda saat saat gruplanmıştır. 
+          Eğer bir film <strong>"🚨 Tek Seans"</strong> etiketi taşıyorsa festival boyunca başka gösterimi yoktur! 
+          <strong>"✅ Alternatif Seans Var"</strong> etiketi taşıyan filmleri ise başka bir günde izleyebilirsiniz.
+        </div>
+      </div>
+      <div id="conflictsContainer">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+
+    <!-- VIEW 3: MASTER TABLE -->
+    <div id="viewTable" style="display: none;">
+      <div class="table-container">
+        <table class="master-table">
+          <thead>
+            <tr>
+              <th>Tarih</th>
+              <th>Saat</th>
+              <th>Film Adı</th>
+              <th>Mekân / Salon</th>
+              <th>Çakışma Durumu</th>
+              <th>Alternatif Seans</th>
+              <th>İşlem</th>
+            </tr>
+          </thead>
+          <tbody id="masterTableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- VIEW 4: MY SCHEDULE -->
+    <div id="viewMySchedule" style="display: block;">
+      <div id="myScheduleAlerts"></div>
+      <div id="myScheduleContent">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL FOR FILM DETAILS -->
+  <div class="modal-backdrop" id="eventModal" onclick="closeModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const ALL_EVENTS = [{"code": "57X07", "name": "Kameranın Ardındaki Kadınlar", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-25", "time": "11:00", "datetime": "2026-10-25T11:00:00+03:00", "timestamp": 1792915200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X07/TURKIYE/tr/kameranin-ardindaki-kadinlar-25-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-30", "time": "11:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X44/TURKIYE/tr/kameranin-ardindaki-kadinlar-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X08", "name": "Kameram 45 Kilo", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-25", "time": "12:30", "datetime": "2026-10-25T12:30:00+03:00", "timestamp": 1792920600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X08/TURKIYE/tr/kameram-45-kilo-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P76", "57X51", "57X81"], "other_screenings": [{"date": "2026-10-30", "time": "12:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X45/TURKIYE/tr/kameram-45-kilo-30-10-2026-antalya"}, {"date": "2026-10-30", "time": "16:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P72/TURKIYE/tr/kameram-45-kilo-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X51", "name": "Memorizu", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-25", "time": "12:30", "datetime": "2026-10-25T12:30:00+03:00", "timestamp": 1792920600, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X51/TURKIYE/tr/memorizu-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P76", "57X08", "57X81"], "other_screenings": [{"date": "2026-10-25", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X81/TURKIYE/tr/memorizu-25-10-2026-antalya"}, {"date": "2026-10-26", "time": "12:15", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P44/TURKIYE/tr/memorizu-26-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X81", "name": "Memorizu", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-25", "time": "12:30", "datetime": "2026-10-25T12:30:00+03:00", "timestamp": 1792920600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X81/TURKIYE/tr/memorizu-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P76", "57X08", "57X51"], "other_screenings": [{"date": "2026-10-25", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X51/TURKIYE/tr/memorizu-25-10-2026-antalya"}, {"date": "2026-10-26", "time": "12:15", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P44/TURKIYE/tr/memorizu-26-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P76", "name": "Arzu", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-25", "time": "12:30", "datetime": "2026-10-25T12:30:00+03:00", "timestamp": 1792920600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P76/TURKIYE/tr/arzu-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X08", "57X51", "57X81"], "other_screenings": [{"date": "2026-10-27", "time": "16:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P88/TURKIYE/tr/arzu-27-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57X09", "name": "Allianoi Diye Bir Yer Yok", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-25", "time": "14:00", "datetime": "2026-10-25T14:00:00+03:00", "timestamp": 1792926000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X09/TURKIYE/tr/allianoi-diye-bir-yer-yok-25-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-30", "time": "14:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X46/TURKIYE/tr/allianoi-diye-bir-yer-yok-30-10-2026-antalya"}, {"date": "2026-10-30", "time": "17:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P73/TURKIYE/tr/allianoi-diye-bir-yer-yok-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P01", "name": "Bir Türk Meselesi", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-25", "time": "14:30", "datetime": "2026-10-25T14:30:00+03:00", "timestamp": 1792927800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P01/TURKIYE/tr/bir-turk-meselesi-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P77", "57X52", "57X82"], "other_screenings": [{"date": "2026-10-26", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X60/TURKIYE/tr/bir-turk-meselesi-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "18:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X99/TURKIYE/tr/bir-turk-meselesi-28-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X52", "name": "Kızın Hikayesi", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-25", "time": "14:30", "datetime": "2026-10-25T14:30:00+03:00", "timestamp": 1792927800, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X52/TURKIYE/tr/kizin-hikayesi-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P01", "57P77", "57X82"], "other_screenings": [{"date": "2026-10-25", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X82/TURKIYE/tr/kizin-hikayesi-25-10-2026-antalya"}, {"date": "2026-10-26", "time": "10:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P43/TURKIYE/tr/kizin-hikayesi-26-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X82", "name": "Kızın Hikayesi", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-25", "time": "14:30", "datetime": "2026-10-25T14:30:00+03:00", "timestamp": 1792927800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X82/TURKIYE/tr/kizin-hikayesi-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P01", "57P77", "57X52"], "other_screenings": [{"date": "2026-10-25", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X52/TURKIYE/tr/kizin-hikayesi-25-10-2026-antalya"}, {"date": "2026-10-26", "time": "10:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P43/TURKIYE/tr/kizin-hikayesi-26-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P77", "name": "Sanat Hamisi", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-25", "time": "14:30", "datetime": "2026-10-25T14:30:00+03:00", "timestamp": 1792927800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P77/TURKIYE/tr/sanat-hamisi-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P01", "57X52", "57X82"], "other_screenings": [{"date": "2026-10-26", "time": "14:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P82/TURKIYE/tr/sanat-hamisi-26-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57X10", "name": "Kül ve Tuz", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-25", "time": "15:30", "datetime": "2026-10-25T15:30:00+03:00", "timestamp": 1792931400, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X10/TURKIYE/tr/kul-ve-tuz-25-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-29", "time": "10:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P64/TURKIYE/tr/kul-ve-tuz-29-10-2026-antalya"}, {"date": "2026-10-30", "time": "15:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X47/TURKIYE/tr/kul-ve-tuz-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X11", "name": "Ulusal Kısa Film Yarışması 3. Seçki", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-25", "time": "16:30", "datetime": "2026-10-25T16:30:00+03:00", "timestamp": 1792935000, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X11/TURKIYE/tr/ulusal-kisa-film-yarismasi-3-secki-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P78", "57X53", "57X83"], "other_screenings": [{"date": "2026-10-30", "time": "16:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X48/TURKIYE/tr/ulusal-kisa-film-yarismasi-3-secki-30-10-2026-antalya"}, {"date": "2026-10-30", "time": "19:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P74/TURKIYE/tr/ulusal-kisa-film-yarismasi-3-secki-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X53", "name": "Zalim İyimserlik", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-25", "time": "16:30", "datetime": "2026-10-25T16:30:00+03:00", "timestamp": 1792935000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X53/TURKIYE/tr/zalim-iyimserlik-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P78", "57X11", "57X83"], "other_screenings": [{"date": "2026-10-25", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X83/TURKIYE/tr/zalim-iyimserlik-25-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X83", "name": "Zalim İyimserlik", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-25", "time": "16:30", "datetime": "2026-10-25T16:30:00+03:00", "timestamp": 1792935000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X83/TURKIYE/tr/zalim-iyimserlik-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P78", "57X11", "57X53"], "other_screenings": [{"date": "2026-10-25", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X53/TURKIYE/tr/zalim-iyimserlik-25-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P78", "name": "İstasyon", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-25", "time": "16:30", "datetime": "2026-10-25T16:30:00+03:00", "timestamp": 1792935000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P78/TURKIYE/tr/istasyon-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X11", "57X53", "57X83"], "other_screenings": [{"date": "2026-10-26", "time": "18:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P84/TURKIYE/tr/istasyon-26-10-2026-antalya"}, {"date": "2026-10-27", "time": "14:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P87/TURKIYE/tr/istasyon-27-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P02", "name": "Sevda", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-25", "time": "17:00", "datetime": "2026-10-25T17:00:00+03:00", "timestamp": 1792936800, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57P02/TURKIYE/tr/sevda-25-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-26", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X59/TURKIYE/tr/sevda-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X98/TURKIYE/tr/sevda-28-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X54", "name": "Londra", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-25", "time": "18:30", "datetime": "2026-10-25T18:30:00+03:00", "timestamp": 1792942200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X54/TURKIYE/tr/londra-25-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P79", "57X84"], "other_screenings": [{"date": "2026-10-25", "time": "18:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X84/TURKIYE/tr/londra-25-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X84", "name": "Londra", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-25", "time": "18:30", "datetime": "2026-10-25T18:30:00+03:00", "timestamp": 1792942200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X84/TURKIYE/tr/londra-25-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P79", "57X54"], "other_screenings": [{"date": "2026-10-25", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X54/TURKIYE/tr/londra-25-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P79", "name": "Elçi", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-25", "time": "18:30", "datetime": "2026-10-25T18:30:00+03:00", "timestamp": 1792942200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P79/TURKIYE/tr/elci-25-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X54", "57X84"], "other_screenings": [{"date": "2026-10-26", "time": "16:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P83/TURKIYE/tr/elci-26-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P41", "name": "Konuşulmayan Çocuklar", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-25", "time": "19:00", "datetime": "2026-10-25T19:00:00+03:00", "timestamp": 1792944000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P41/TURKIYE/tr/konusulmayan-cocuklar-25-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P03", "57X12"], "other_screenings": [{"date": "2026-10-25", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X55/TURKIYE/tr/konusulmayan-cocuklar-25-10-2026-antalya"}, {"date": "2026-10-25", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X85/TURKIYE/tr/konusulmayan-cocuklar-25-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P03", "name": "Tatlı Maya", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-25", "time": "19:00", "datetime": "2026-10-25T19:00:00+03:00", "timestamp": 1792944000, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57P03/TURKIYE/tr/tatli-maya-25-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P41", "57X12"], "other_screenings": [{"date": "2026-10-27", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X64/TURKIYE/tr/tatli-maya-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "18:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P94/TURKIYE/tr/tatli-maya-28-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X12", "name": "River Dreams", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-25", "time": "19:00", "datetime": "2026-10-25T19:00:00+03:00", "timestamp": 1792944000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X12/TURKIYE/tr/river-dreams-25-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P03", "57P41"], "other_screenings": [{"date": "2026-10-30", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X49/TURKIYE/tr/river-dreams-30-10-2026-antalya"}, {"date": "2026-10-30", "time": "21:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P75/TURKIYE/tr/river-dreams-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X13", "name": "Posta Kutusu 213 Diyarbakır", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-25", "time": "21:00", "datetime": "2026-10-25T21:00:00+03:00", "timestamp": 1792951200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X13/TURKIYE/tr/posta-kutusu-213-diyarbakir-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P80", "57X55", "57X85"], "other_screenings": [{"date": "2026-10-28", "time": "21:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P63/TURKIYE/tr/posta-kutusu-213-diyarbakir-28-10-2026-antalya"}, {"date": "2026-10-30", "time": "21:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X50/TURKIYE/tr/posta-kutusu-213-diyarbakir-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X55", "name": "Konuşulmayan Çocuklar", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-25", "time": "21:00", "datetime": "2026-10-25T21:00:00+03:00", "timestamp": 1792951200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X55/TURKIYE/tr/konusulmayan-cocuklar-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P80", "57X13", "57X85"], "other_screenings": [{"date": "2026-10-25", "time": "19:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P41/TURKIYE/tr/konusulmayan-cocuklar-25-10-2026-antalya"}, {"date": "2026-10-25", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X85/TURKIYE/tr/konusulmayan-cocuklar-25-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X85", "name": "Konuşulmayan Çocuklar", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-25", "time": "21:00", "datetime": "2026-10-25T21:00:00+03:00", "timestamp": 1792951200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X85/TURKIYE/tr/konusulmayan-cocuklar-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P80", "57X13", "57X55"], "other_screenings": [{"date": "2026-10-25", "time": "19:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P41/TURKIYE/tr/konusulmayan-cocuklar-25-10-2026-antalya"}, {"date": "2026-10-25", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X55/TURKIYE/tr/konusulmayan-cocuklar-25-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P80", "name": "İnsan Kaynağı", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-25", "time": "21:00", "datetime": "2026-10-25T21:00:00+03:00", "timestamp": 1792951200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P80/TURKIYE/tr/insan-kaynagi-25-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X13", "57X55", "57X85"], "other_screenings": [{"date": "2026-10-27", "time": "21:00", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P90/TURKIYE/tr/insan-kaynagi-27-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P42", "name": "Çekmeceler", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-25", "time": "21:30", "datetime": "2026-10-25T21:30:00+03:00", "timestamp": 1792953000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P42/TURKIYE/tr/cekmeceler-25-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P04"], "other_screenings": [], "shortVenue": "AKM Perge", "isSingleScreening": true}, {"code": "57P04", "name": "Taş ve Tüy", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-25", "time": "21:30", "datetime": "2026-10-25T21:30:00+03:00", "timestamp": 1792953000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P04/TURKIYE/tr/tas-ve-tuy-25-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P42"], "other_screenings": [{"date": "2026-10-27", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X61/TURKIYE/tr/tas-ve-tuy-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "16:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P93/TURKIYE/tr/tas-ve-tuy-28-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57P43", "name": "Kızın Hikayesi", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-26", "time": "10:00", "datetime": "2026-10-26T10:00:00+03:00", "timestamp": 1792998000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P43/TURKIYE/tr/kizin-hikayesi-26-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-25", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X52/TURKIYE/tr/kizin-hikayesi-25-10-2026-antalya"}, {"date": "2026-10-25", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X82/TURKIYE/tr/kizin-hikayesi-25-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P05", "name": "Üzgün Kızlar", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-26", "time": "12:00", "datetime": "2026-10-26T12:00:00+03:00", "timestamp": 1793005200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P05/TURKIYE/tr/uzgun-kizlar-26-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57X14"], "other_screenings": [{"date": "2026-10-29", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y02/TURKIYE/tr/uzgun-kizlar-29-10-2026-antalya"}, {"date": "2026-10-30", "time": "18:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y10/TURKIYE/tr/uzgun-kizlar-30-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X14", "name": "Anadolu'nun Kayıp Pençeleri", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-26", "time": "12:00", "datetime": "2026-10-26T12:00:00+03:00", "timestamp": 1793005200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X14/TURKIYE/tr/anadolu-nun-kayip-penceleri-26-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P05"], "other_screenings": [{"date": "2026-10-28", "time": "12:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P56/TURKIYE/tr/anadolu-nun-kayip-penceleri-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "12:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X36/TURKIYE/tr/anadolu-nun-kayip-penceleri-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P44", "name": "Memorizu", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-26", "time": "12:15", "datetime": "2026-10-26T12:15:00+03:00", "timestamp": 1793006100, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P44/TURKIYE/tr/memorizu-26-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-25", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X51/TURKIYE/tr/memorizu-25-10-2026-antalya"}, {"date": "2026-10-25", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X81/TURKIYE/tr/memorizu-25-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X15", "name": "Adım Adım Eve", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-26", "time": "12:30", "datetime": "2026-10-26T12:30:00+03:00", "timestamp": 1793007000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X15/TURKIYE/tr/adim-adim-eve-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P81", "57X56", "57X86"], "other_screenings": [{"date": "2026-10-28", "time": "12:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P57/TURKIYE/tr/adim-adim-eve-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "12:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X37/TURKIYE/tr/adim-adim-eve-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X56", "name": "Anne Sevgisine Beceriksiz Bir Saygı Duruşu", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-26", "time": "12:30", "datetime": "2026-10-26T12:30:00+03:00", "timestamp": 1793007000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X56/TURKIYE/tr/anne-sevgisine-beceriksiz-bir-saygi-durusu-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P81", "57X15", "57X86"], "other_screenings": [{"date": "2026-10-26", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X86/TURKIYE/tr/anne-sevgisine-beceriksiz-bir-saygi-durusu-26-10-2026-antalya"}, {"date": "2026-10-26", "time": "14:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P45/TURKIYE/tr/anne-sevgisine-beceriksiz-bir-saygi-durusu-26-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X86", "name": "Anne Sevgisine Beceriksiz Bir Saygı Duruşu", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-26", "time": "12:30", "datetime": "2026-10-26T12:30:00+03:00", "timestamp": 1793007000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X86/TURKIYE/tr/anne-sevgisine-beceriksiz-bir-saygi-durusu-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P81", "57X15", "57X56"], "other_screenings": [{"date": "2026-10-26", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X56/TURKIYE/tr/anne-sevgisine-beceriksiz-bir-saygi-durusu-26-10-2026-antalya"}, {"date": "2026-10-26", "time": "14:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P45/TURKIYE/tr/anne-sevgisine-beceriksiz-bir-saygi-durusu-26-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P81", "name": "Zejtune", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-26", "time": "12:30", "datetime": "2026-10-26T12:30:00+03:00", "timestamp": 1793007000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P81/TURKIYE/tr/zejtune-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X15", "57X56", "57X86"], "other_screenings": [], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": true}, {"code": "57X16", "name": "Hayaletin Evi Yok", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-26", "time": "13:00", "datetime": "2026-10-26T13:00:00+03:00", "timestamp": 1793008800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X16/TURKIYE/tr/hayaletin-evi-yok-26-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-28", "time": "13:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P58/TURKIYE/tr/hayaletin-evi-yok-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "13:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X38/TURKIYE/tr/hayaletin-evi-yok-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X17", "name": "Arayış", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-26", "time": "13:30", "datetime": "2026-10-26T13:30:00+03:00", "timestamp": 1793010600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X17/TURKIYE/tr/arayis-26-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-28", "time": "13:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P59/TURKIYE/tr/arayis-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "13:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X39/TURKIYE/tr/arayis-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P45", "name": "Anne Sevgisine Beceriksiz Bir Saygı Duruşu", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-26", "time": "14:00", "datetime": "2026-10-26T14:00:00+03:00", "timestamp": 1793012400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P45/TURKIYE/tr/anne-sevgisine-beceriksiz-bir-saygi-durusu-26-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-26", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X56/TURKIYE/tr/anne-sevgisine-beceriksiz-bir-saygi-durusu-26-10-2026-antalya"}, {"date": "2026-10-26", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X86/TURKIYE/tr/anne-sevgisine-beceriksiz-bir-saygi-durusu-26-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P06", "name": "Artakalan", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-26", "time": "14:30", "datetime": "2026-10-26T14:30:00+03:00", "timestamp": 1793014200, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57P06/TURKIYE/tr/artakalan-26-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P82", "57X18", "57X57", "57X87"], "other_screenings": [{"date": "2026-10-27", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X65/TURKIYE/tr/artakalan-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "21:00", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P95/TURKIYE/tr/artakalan-28-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X18", "name": "Denizyıldızı: Bir Cesaret Öyküsü", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-26", "time": "14:30", "datetime": "2026-10-26T14:30:00+03:00", "timestamp": 1793014200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X18/TURKIYE/tr/denizyildizi-bir-cesaret-oykusu-26-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P06", "57P82", "57X57", "57X87"], "other_screenings": [{"date": "2026-10-28", "time": "14:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P60/TURKIYE/tr/denizyildizi-bir-cesaret-oykusu-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "14:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X40/TURKIYE/tr/denizyildizi-bir-cesaret-oykusu-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X57", "name": "13. Raunt", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-26", "time": "14:30", "datetime": "2026-10-26T14:30:00+03:00", "timestamp": 1793014200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X57/TURKIYE/tr/13-raunt-26-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P06", "57P82", "57X18", "57X87"], "other_screenings": [{"date": "2026-10-30", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y08/TURKIYE/tr/13-raunt-30-10-2026-antalya"}, {"date": "2026-10-30", "time": "17:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P29/TURKIYE/tr/13-raunt-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X87", "name": "Sinekler", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-26", "time": "14:30", "datetime": "2026-10-26T14:30:00+03:00", "timestamp": 1793014200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X87/TURKIYE/tr/sinekler-26-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P06", "57P82", "57X18", "57X57"], "other_screenings": [{"date": "2026-10-26", "time": "21:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P09/TURKIYE/tr/sinekler-26-10-2026-antalya"}, {"date": "2026-10-27", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X92/TURKIYE/tr/sinekler-27-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P82", "name": "Sanat Hamisi", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-26", "time": "14:30", "datetime": "2026-10-26T14:30:00+03:00", "timestamp": 1793014200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P82/TURKIYE/tr/sanat-hamisi-26-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P06", "57X18", "57X57", "57X87"], "other_screenings": [{"date": "2026-10-25", "time": "14:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P77/TURKIYE/tr/sanat-hamisi-25-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P46", "name": "Heysel 85", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-26", "time": "16:30", "datetime": "2026-10-26T16:30:00+03:00", "timestamp": 1793021400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P46/TURKIYE/tr/heysel-85-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P83", "57X58", "57X88"], "other_screenings": [{"date": "2026-10-26", "time": "18:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X89/TURKIYE/tr/heysel-85-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X78/TURKIYE/tr/heysel-85-30-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X58", "name": "Altı Haftalık Veda", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-26", "time": "16:30", "datetime": "2026-10-26T16:30:00+03:00", "timestamp": 1793021400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X58/TURKIYE/tr/alti-haftalik-veda-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P46", "57P83", "57X88"], "other_screenings": [{"date": "2026-10-26", "time": "17:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P07/TURKIYE/tr/alti-haftalik-veda-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X97/TURKIYE/tr/alti-haftalik-veda-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X88", "name": "Küller", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-26", "time": "16:30", "datetime": "2026-10-26T16:30:00+03:00", "timestamp": 1793021400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X88/TURKIYE/tr/kuller-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P46", "57P83", "57X58"], "other_screenings": [{"date": "2026-10-26", "time": "19:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P47/TURKIYE/tr/kuller-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y09/TURKIYE/tr/kuller-30-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P83", "name": "Elçi", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-26", "time": "16:30", "datetime": "2026-10-26T16:30:00+03:00", "timestamp": 1793021400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P83/TURKIYE/tr/elci-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P46", "57X58", "57X88"], "other_screenings": [{"date": "2026-10-25", "time": "18:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P79/TURKIYE/tr/elci-25-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P07", "name": "Altı Haftalık Veda", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-26", "time": "17:00", "datetime": "2026-10-26T17:00:00+03:00", "timestamp": 1793023200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P07/TURKIYE/tr/alti-haftalik-veda-26-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57X19"], "other_screenings": [{"date": "2026-10-26", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X58/TURKIYE/tr/alti-haftalik-veda-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X97/TURKIYE/tr/alti-haftalik-veda-28-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X19", "name": "Ulusal Kısa Film Yarışması 1. Seçki", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-26", "time": "17:00", "datetime": "2026-10-26T17:00:00+03:00", "timestamp": 1793023200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X19/TURKIYE/tr/ulusal-kisa-film-yarismasi-1-secki-26-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P07"], "other_screenings": [{"date": "2026-10-28", "time": "17:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P61/TURKIYE/tr/ulusal-kisa-film-yarismasi-1-secki-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "16:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X41/TURKIYE/tr/ulusal-kisa-film-yarismasi-1-secki-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X59", "name": "Sevda", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-26", "time": "18:30", "datetime": "2026-10-26T18:30:00+03:00", "timestamp": 1793028600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X59/TURKIYE/tr/sevda-26-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P84", "57X89"], "other_screenings": [{"date": "2026-10-25", "time": "17:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P02/TURKIYE/tr/sevda-25-10-2026-antalya"}, {"date": "2026-10-28", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X98/TURKIYE/tr/sevda-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X89", "name": "Heysel 85", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-26", "time": "18:30", "datetime": "2026-10-26T18:30:00+03:00", "timestamp": 1793028600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X89/TURKIYE/tr/heysel-85-26-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P84", "57X59"], "other_screenings": [{"date": "2026-10-26", "time": "16:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P46/TURKIYE/tr/heysel-85-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X78/TURKIYE/tr/heysel-85-30-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P84", "name": "İstasyon", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-26", "time": "18:30", "datetime": "2026-10-26T18:30:00+03:00", "timestamp": 1793028600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P84/TURKIYE/tr/istasyon-26-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X59", "57X89"], "other_screenings": [{"date": "2026-10-25", "time": "16:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P78/TURKIYE/tr/istasyon-25-10-2026-antalya"}, {"date": "2026-10-27", "time": "14:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P87/TURKIYE/tr/istasyon-27-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P47", "name": "Küller", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-26", "time": "19:00", "datetime": "2026-10-26T19:00:00+03:00", "timestamp": 1793030400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P47/TURKIYE/tr/kuller-26-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P08", "57X20"], "other_screenings": [{"date": "2026-10-26", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X88/TURKIYE/tr/kuller-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y09/TURKIYE/tr/kuller-30-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P08", "name": "Düğün Şarkıcısı", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-26", "time": "19:00", "datetime": "2026-10-26T19:00:00+03:00", "timestamp": 1793030400, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57P08/TURKIYE/tr/dugun-sarkicisi-26-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P47", "57X20"], "other_screenings": [{"date": "2026-10-27", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X63/TURKIYE/tr/dugun-sarkicisi-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "12:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P91/TURKIYE/tr/dugun-sarkicisi-28-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X20", "name": "Prima Ballerina Meriç", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-26", "time": "19:00", "datetime": "2026-10-26T19:00:00+03:00", "timestamp": 1793030400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X20/TURKIYE/tr/prima-ballerina-meric-26-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P08", "57P47"], "other_screenings": [{"date": "2026-10-28", "time": "19:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P62/TURKIYE/tr/prima-ballerina-meric-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X42/TURKIYE/tr/prima-ballerina-meric-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X21", "name": "Ana'dolu: Bacılar, Bibiler ve Ezeler", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-26", "time": "21:00", "datetime": "2026-10-26T21:00:00+03:00", "timestamp": 1793037600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X21/TURKIYE/tr/ana-dolu-bacilar-bibiler-ve-ezeler-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P85", "57X60", "57X90"], "other_screenings": [{"date": "2026-10-29", "time": "21:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X43/TURKIYE/tr/ana-dolu-bacilar-bibiler-ve-ezeler-29-10-2026-antalya"}, {"date": "2026-10-30", "time": "15:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P71/TURKIYE/tr/ana-dolu-bacilar-bibiler-ve-ezeler-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X60", "name": "Bir Türk Meselesi", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-26", "time": "21:00", "datetime": "2026-10-26T21:00:00+03:00", "timestamp": 1793037600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X60/TURKIYE/tr/bir-turk-meselesi-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P85", "57X21", "57X90"], "other_screenings": [{"date": "2026-10-25", "time": "14:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P01/TURKIYE/tr/bir-turk-meselesi-25-10-2026-antalya"}, {"date": "2026-10-28", "time": "18:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X99/TURKIYE/tr/bir-turk-meselesi-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X90", "name": "Gece Yarısı Tüm Aşıklar", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-26", "time": "21:00", "datetime": "2026-10-26T21:00:00+03:00", "timestamp": 1793037600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X90/TURKIYE/tr/gece-yarisi-tum-asiklar-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P85", "57X21", "57X60"], "other_screenings": [{"date": "2026-10-30", "time": "14:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P28/TURKIYE/tr/gece-yarisi-tum-asiklar-30-10-2026-antalya"}, {"date": "2026-10-30", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X80/TURKIYE/tr/gece-yarisi-tum-asiklar-30-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P85", "name": "Flaşbellek", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-26", "time": "21:00", "datetime": "2026-10-26T21:00:00+03:00", "timestamp": 1793037600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P85/TURKIYE/tr/flasbellek-26-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X21", "57X60", "57X90"], "other_screenings": [{"date": "2026-10-29", "time": "21:00", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X01/TURKIYE/tr/flasbellek-29-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P48", "name": "Uyuyan Kadın", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-26", "time": "21:30", "datetime": "2026-10-26T21:30:00+03:00", "timestamp": 1793039400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P48/TURKIYE/tr/uyuyan-kadin-26-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P09"], "other_screenings": [{"date": "2026-10-27", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X93/TURKIYE/tr/uyuyan-kadin-27-10-2026-antalya"}, {"date": "2026-10-30", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y07/TURKIYE/tr/uyuyan-kadin-30-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P09", "name": "Sinekler", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-26", "time": "21:30", "datetime": "2026-10-26T21:30:00+03:00", "timestamp": 1793039400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P09/TURKIYE/tr/sinekler-26-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P48"], "other_screenings": [{"date": "2026-10-26", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X87/TURKIYE/tr/sinekler-26-10-2026-antalya"}, {"date": "2026-10-27", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X92/TURKIYE/tr/sinekler-27-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57P49", "name": "Günışığı Ekspresi", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-27", "time": "11:00", "datetime": "2026-10-27T11:00:00+03:00", "timestamp": 1793088000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P49/TURKIYE/tr/gunisigi-ekspresi-27-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [], "shortVenue": "AKM Perge", "isSingleScreening": true}, {"code": "57X22", "name": "Yıkılmak", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-27", "time": "11:30", "datetime": "2026-10-27T11:30:00+03:00", "timestamp": 1793089800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X22/TURKIYE/tr/yikilmak-27-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-28", "time": "11:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X29/TURKIYE/tr/yikilmak-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "10:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P21/TURKIYE/tr/yikilmak-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P10", "name": "Nehir Treni", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-27", "time": "12:00", "datetime": "2026-10-27T12:00:00+03:00", "timestamp": 1793091600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P10/TURKIYE/tr/nehir-treni-27-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-28", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X66/TURKIYE/tr/nehir-treni-28-10-2026-antalya"}, {"date": "2026-10-28", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X96/TURKIYE/tr/nehir-treni-28-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X61", "name": "Taş ve Tüy", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-27", "time": "12:30", "datetime": "2026-10-27T12:30:00+03:00", "timestamp": 1793093400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X61/TURKIYE/tr/tas-ve-tuy-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P86", "57X91"], "other_screenings": [{"date": "2026-10-25", "time": "21:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P04/TURKIYE/tr/tas-ve-tuy-25-10-2026-antalya"}, {"date": "2026-10-28", "time": "16:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P93/TURKIYE/tr/tas-ve-tuy-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X91", "name": "Melekler Diyarı", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-27", "time": "12:30", "datetime": "2026-10-27T12:30:00+03:00", "timestamp": 1793093400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X91/TURKIYE/tr/melekler-diyari-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P86", "57X61"], "other_screenings": [{"date": "2026-10-27", "time": "21:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P54/TURKIYE/tr/melekler-diyari-27-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P86", "name": "İsimsiz Eserler Mezarlığı", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-27", "time": "12:30", "datetime": "2026-10-27T12:30:00+03:00", "timestamp": 1793093400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P86/TURKIYE/tr/isimsiz-eserler-mezarligi-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X61", "57X91"], "other_screenings": [{"date": "2026-10-29", "time": "14:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P97/TURKIYE/tr/isimsiz-eserler-mezarligi-29-10-2026-antalya"}, {"date": "2026-10-30", "time": "19:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P30/TURKIYE/tr/isimsiz-eserler-mezarligi-30-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P50", "name": "İki Kere Yaşamak Üç Kere Ölmek", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-27", "time": "13:00", "datetime": "2026-10-27T13:00:00+03:00", "timestamp": 1793095200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P50/TURKIYE/tr/iki-kere-yasamak-uc-kere-olmek-27-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57X23"], "other_screenings": [], "shortVenue": "AKM Perge", "isSingleScreening": true}, {"code": "57X23", "name": "Ulusal Kısa Film Yarışması 2. Seçki", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-27", "time": "13:00", "datetime": "2026-10-27T13:00:00+03:00", "timestamp": 1793095200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X23/TURKIYE/tr/ulusal-kisa-film-yarismasi-2-secki-27-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P50"], "other_screenings": [{"date": "2026-10-28", "time": "13:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X30/TURKIYE/tr/ulusal-kisa-film-yarismasi-2-secki-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "14:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P65/TURKIYE/tr/ulusal-kisa-film-yarismasi-2-secki-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P11", "name": "Siyah Tavşan, Beyaz Tavşan", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-27", "time": "14:30", "datetime": "2026-10-27T14:30:00+03:00", "timestamp": 1793100600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P11/TURKIYE/tr/siyah-tavsan-beyaz-tavsan-27-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P87", "57X62", "57X92"], "other_screenings": [{"date": "2026-10-28", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X70/TURKIYE/tr/siyah-tavsan-beyaz-tavsan-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y06/TURKIYE/tr/siyah-tavsan-beyaz-tavsan-29-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X62", "name": "Kadim Mavi", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-27", "time": "14:30", "datetime": "2026-10-27T14:30:00+03:00", "timestamp": 1793100600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X62/TURKIYE/tr/kadim-mavi-27-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P11", "57P87", "57X92"], "other_screenings": [{"date": "2026-10-28", "time": "15:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P17/TURKIYE/tr/kadim-mavi-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "12:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P96/TURKIYE/tr/kadim-mavi-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X92", "name": "Sinekler", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-27", "time": "14:30", "datetime": "2026-10-27T14:30:00+03:00", "timestamp": 1793100600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X92/TURKIYE/tr/sinekler-27-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P11", "57P87", "57X62"], "other_screenings": [{"date": "2026-10-26", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X87/TURKIYE/tr/sinekler-26-10-2026-antalya"}, {"date": "2026-10-26", "time": "21:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P09/TURKIYE/tr/sinekler-26-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P87", "name": "İstasyon", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-27", "time": "14:30", "datetime": "2026-10-27T14:30:00+03:00", "timestamp": 1793100600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P87/TURKIYE/tr/istasyon-27-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P11", "57X62", "57X92"], "other_screenings": [{"date": "2026-10-25", "time": "16:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P78/TURKIYE/tr/istasyon-25-10-2026-antalya"}, {"date": "2026-10-26", "time": "18:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P84/TURKIYE/tr/istasyon-26-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P51", "name": "Ne Ses Ne Seda", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-27", "time": "15:00", "datetime": "2026-10-27T15:00:00+03:00", "timestamp": 1793102400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P51/TURKIYE/tr/ne-ses-ne-seda-27-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [], "shortVenue": "AKM Perge", "isSingleScreening": true}, {"code": "57X24", "name": "Beyaz Kıtaya Yolculuk", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-27", "time": "16:00", "datetime": "2026-10-27T16:00:00+03:00", "timestamp": 1793106000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X24/TURKIYE/tr/beyaz-kitaya-yolculuk-27-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-28", "time": "16:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X31/TURKIYE/tr/beyaz-kitaya-yolculuk-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "21:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P69/TURKIYE/tr/beyaz-kitaya-yolculuk-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P52", "name": "Kökler Bölümü Kısaları", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-27", "time": "16:30", "datetime": "2026-10-27T16:30:00+03:00", "timestamp": 1793107800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P52/TURKIYE/tr/kokler-bolumu-kisalari-27-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P88", "57X63", "57X93"], "other_screenings": [], "shortVenue": "AKM Perge", "isSingleScreening": true}, {"code": "57X63", "name": "Düğün Şarkıcısı", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-27", "time": "16:30", "datetime": "2026-10-27T16:30:00+03:00", "timestamp": 1793107800, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X63/TURKIYE/tr/dugun-sarkicisi-27-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P52", "57P88", "57X93"], "other_screenings": [{"date": "2026-10-26", "time": "19:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P08/TURKIYE/tr/dugun-sarkicisi-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "12:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P91/TURKIYE/tr/dugun-sarkicisi-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X93", "name": "Uyuyan Kadın", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-27", "time": "16:30", "datetime": "2026-10-27T16:30:00+03:00", "timestamp": 1793107800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X93/TURKIYE/tr/uyuyan-kadin-27-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P52", "57P88", "57X63"], "other_screenings": [{"date": "2026-10-26", "time": "21:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P48/TURKIYE/tr/uyuyan-kadin-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y07/TURKIYE/tr/uyuyan-kadin-30-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P88", "name": "Arzu", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-27", "time": "16:30", "datetime": "2026-10-27T16:30:00+03:00", "timestamp": 1793107800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P88/TURKIYE/tr/arzu-27-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P52", "57X63", "57X93"], "other_screenings": [{"date": "2026-10-25", "time": "12:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P76/TURKIYE/tr/arzu-25-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P12", "name": "Bir Anne Hakkında", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-27", "time": "17:00", "datetime": "2026-10-27T17:00:00+03:00", "timestamp": 1793109600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P12/TURKIYE/tr/bir-anne-hakkinda-27-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-30", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X77/TURKIYE/tr/bir-anne-hakkinda-30-10-2026-antalya"}, {"date": "2026-10-30", "time": "16:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X04/TURKIYE/tr/bir-anne-hakkinda-30-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X25", "name": "Zor Zanaat", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-27", "time": "17:30", "datetime": "2026-10-27T17:30:00+03:00", "timestamp": 1793111400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X25/TURKIYE/tr/zor-zanaat-27-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-28", "time": "17:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X32/TURKIYE/tr/zor-zanaat-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "18:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P67/TURKIYE/tr/zor-zanaat-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X64", "name": "Tatlı Maya", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-27", "time": "18:30", "datetime": "2026-10-27T18:30:00+03:00", "timestamp": 1793115000, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X64/TURKIYE/tr/tatli-maya-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P89", "57X94"], "other_screenings": [{"date": "2026-10-25", "time": "19:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P03/TURKIYE/tr/tatli-maya-25-10-2026-antalya"}, {"date": "2026-10-28", "time": "18:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P94/TURKIYE/tr/tatli-maya-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X94", "name": "Filistin 36", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-27", "time": "18:30", "datetime": "2026-10-27T18:30:00+03:00", "timestamp": 1793115000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X94/TURKIYE/tr/filistin-36-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P89", "57X64"], "other_screenings": [{"date": "2026-10-27", "time": "19:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P53/TURKIYE/tr/filistin-36-27-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P89", "name": "Tavuri", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-27", "time": "18:30", "datetime": "2026-10-27T18:30:00+03:00", "timestamp": 1793115000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P89/TURKIYE/tr/tavuri-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X64", "57X94"], "other_screenings": [{"date": "2026-10-29", "time": "18:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P99/TURKIYE/tr/tavuri-29-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P53", "name": "Filistin 36", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-27", "time": "19:00", "datetime": "2026-10-27T19:00:00+03:00", "timestamp": 1793116800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P53/TURKIYE/tr/filistin-36-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P13", "57X26"], "other_screenings": [{"date": "2026-10-27", "time": "18:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X94/TURKIYE/tr/filistin-36-27-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P13", "name": "Ölü Arının İğnesi", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-27", "time": "19:00", "datetime": "2026-10-27T19:00:00+03:00", "timestamp": 1793116800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P13/TURKIYE/tr/olu-arinin-ignesi-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P53", "57X26"], "other_screenings": [{"date": "2026-10-29", "time": "16:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P98/TURKIYE/tr/olu-arinin-ignesi-29-10-2026-antalya"}, {"date": "2026-10-29", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X74/TURKIYE/tr/olu-arinin-ignesi-29-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X26", "name": "Uzakta", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-27", "time": "19:00", "datetime": "2026-10-27T19:00:00+03:00", "timestamp": 1793116800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X26/TURKIYE/tr/uzakta-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P13", "57P53"], "other_screenings": [{"date": "2026-10-28", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X33/TURKIYE/tr/uzakta-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "20:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P68/TURKIYE/tr/uzakta-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X65", "name": "Artakalan", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-27", "time": "21:00", "datetime": "2026-10-27T21:00:00+03:00", "timestamp": 1793124000, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X65/TURKIYE/tr/artakalan-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P90", "57X95"], "other_screenings": [{"date": "2026-10-26", "time": "14:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P06/TURKIYE/tr/artakalan-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "21:00", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P95/TURKIYE/tr/artakalan-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X95", "name": "Minotor", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-27", "time": "21:00", "datetime": "2026-10-27T21:00:00+03:00", "timestamp": 1793124000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X95/TURKIYE/tr/minotor-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P90", "57X65"], "other_screenings": [{"date": "2026-10-29", "time": "12:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P22/TURKIYE/tr/minotor-29-10-2026-antalya"}, {"date": "2026-10-30", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y11/TURKIYE/tr/minotor-30-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P90", "name": "İnsan Kaynağı", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-27", "time": "21:00", "datetime": "2026-10-27T21:00:00+03:00", "timestamp": 1793124000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P90/TURKIYE/tr/insan-kaynagi-27-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X65", "57X95"], "other_screenings": [{"date": "2026-10-25", "time": "21:00", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P80/TURKIYE/tr/insan-kaynagi-25-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P54", "name": "Melekler Diyarı", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-27", "time": "21:30", "datetime": "2026-10-27T21:30:00+03:00", "timestamp": 1793125800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P54/TURKIYE/tr/melekler-diyari-27-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P14"], "other_screenings": [{"date": "2026-10-27", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X91/TURKIYE/tr/melekler-diyari-27-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P14", "name": "Paris Paris", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-27", "time": "21:30", "datetime": "2026-10-27T21:30:00+03:00", "timestamp": 1793125800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P14/TURKIYE/tr/paris-paris-27-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P54"], "other_screenings": [{"date": "2026-10-28", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X67/TURKIYE/tr/paris-paris-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "18:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y05/TURKIYE/tr/paris-paris-29-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57P55", "name": "Ve Balıklar Tepemizden Uçtu", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-28", "time": "10:00", "datetime": "2026-10-28T10:00:00+03:00", "timestamp": 1793170800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P55/TURKIYE/tr/ve-baliklar-tepemizden-uctu-28-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [], "shortVenue": "AKM Perge", "isSingleScreening": true}, {"code": "57P15", "name": "Umut Işığı", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-28", "time": "11:30", "datetime": "2026-10-28T11:30:00+03:00", "timestamp": 1793176200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P15/TURKIYE/tr/umut-isigi-28-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57X29"], "other_screenings": [{"date": "2026-10-28", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X68/TURKIYE/tr/umut-isigi-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y04/TURKIYE/tr/umut-isigi-29-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X29", "name": "Yıkılmak", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-28", "time": "11:30", "datetime": "2026-10-28T11:30:00+03:00", "timestamp": 1793176200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X29/TURKIYE/tr/yikilmak-28-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P15"], "other_screenings": [{"date": "2026-10-27", "time": "11:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X22/TURKIYE/tr/yikilmak-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "10:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P21/TURKIYE/tr/yikilmak-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P56", "name": "Anadolu'nun Kayıp Pençeleri", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-28", "time": "12:00", "datetime": "2026-10-28T12:00:00+03:00", "timestamp": 1793178000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P56/TURKIYE/tr/anadolu-nun-kayip-penceleri-28-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-26", "time": "12:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X14/TURKIYE/tr/anadolu-nun-kayip-penceleri-26-10-2026-antalya"}, {"date": "2026-10-29", "time": "12:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X36/TURKIYE/tr/anadolu-nun-kayip-penceleri-29-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P57", "name": "Adım Adım Eve", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-28", "time": "12:30", "datetime": "2026-10-28T12:30:00+03:00", "timestamp": 1793179800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P57/TURKIYE/tr/adim-adim-eve-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P91", "57X66", "57X96"], "other_screenings": [{"date": "2026-10-26", "time": "12:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X15/TURKIYE/tr/adim-adim-eve-26-10-2026-antalya"}, {"date": "2026-10-29", "time": "12:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X37/TURKIYE/tr/adim-adim-eve-29-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X66", "name": "Nehir Treni", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-28", "time": "12:30", "datetime": "2026-10-28T12:30:00+03:00", "timestamp": 1793179800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X66/TURKIYE/tr/nehir-treni-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P57", "57P91", "57X96"], "other_screenings": [{"date": "2026-10-27", "time": "12:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P10/TURKIYE/tr/nehir-treni-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X96/TURKIYE/tr/nehir-treni-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X96", "name": "Nehir Treni", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-28", "time": "12:30", "datetime": "2026-10-28T12:30:00+03:00", "timestamp": 1793179800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X96/TURKIYE/tr/nehir-treni-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P57", "57P91", "57X66"], "other_screenings": [{"date": "2026-10-27", "time": "12:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P10/TURKIYE/tr/nehir-treni-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X66/TURKIYE/tr/nehir-treni-28-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P91", "name": "Düğün Şarkıcısı", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-28", "time": "12:30", "datetime": "2026-10-28T12:30:00+03:00", "timestamp": 1793179800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P91/TURKIYE/tr/dugun-sarkicisi-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P57", "57X66", "57X96"], "other_screenings": [{"date": "2026-10-26", "time": "19:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P08/TURKIYE/tr/dugun-sarkicisi-26-10-2026-antalya"}, {"date": "2026-10-27", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X63/TURKIYE/tr/dugun-sarkicisi-27-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P58", "name": "Hayaletin Evi Yok", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-28", "time": "13:00", "datetime": "2026-10-28T13:00:00+03:00", "timestamp": 1793181600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P58/TURKIYE/tr/hayaletin-evi-yok-28-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57X30"], "other_screenings": [{"date": "2026-10-26", "time": "13:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X16/TURKIYE/tr/hayaletin-evi-yok-26-10-2026-antalya"}, {"date": "2026-10-29", "time": "13:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X38/TURKIYE/tr/hayaletin-evi-yok-29-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X30", "name": "Ulusal Kısa Film Yarışması 2. Seçki", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-28", "time": "13:00", "datetime": "2026-10-28T13:00:00+03:00", "timestamp": 1793181600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X30/TURKIYE/tr/ulusal-kisa-film-yarismasi-2-secki-28-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P58"], "other_screenings": [{"date": "2026-10-27", "time": "13:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X23/TURKIYE/tr/ulusal-kisa-film-yarismasi-2-secki-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "14:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P65/TURKIYE/tr/ulusal-kisa-film-yarismasi-2-secki-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P59", "name": "Arayış", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-28", "time": "13:30", "datetime": "2026-10-28T13:30:00+03:00", "timestamp": 1793183400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P59/TURKIYE/tr/arayis-28-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P16"], "other_screenings": [{"date": "2026-10-26", "time": "13:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X17/TURKIYE/tr/arayis-26-10-2026-antalya"}, {"date": "2026-10-29", "time": "13:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X39/TURKIYE/tr/arayis-29-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P16", "name": "Elisa", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-28", "time": "13:30", "datetime": "2026-10-28T13:30:00+03:00", "timestamp": 1793183400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P16/TURKIYE/tr/elisa-28-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P59"], "other_screenings": [{"date": "2026-10-28", "time": "14:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P92/TURKIYE/tr/elisa-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X72/TURKIYE/tr/elisa-29-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57P60", "name": "Denizyıldızı: Bir Cesaret Öyküsü", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-28", "time": "14:30", "datetime": "2026-10-28T14:30:00+03:00", "timestamp": 1793187000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P60/TURKIYE/tr/denizyildizi-bir-cesaret-oykusu-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P92", "57X67", "57X97"], "other_screenings": [{"date": "2026-10-26", "time": "14:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X18/TURKIYE/tr/denizyildizi-bir-cesaret-oykusu-26-10-2026-antalya"}, {"date": "2026-10-29", "time": "14:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X40/TURKIYE/tr/denizyildizi-bir-cesaret-oykusu-29-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X67", "name": "Paris Paris", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-28", "time": "14:30", "datetime": "2026-10-28T14:30:00+03:00", "timestamp": 1793187000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X67/TURKIYE/tr/paris-paris-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P60", "57P92", "57X97"], "other_screenings": [{"date": "2026-10-27", "time": "21:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P14/TURKIYE/tr/paris-paris-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "18:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y05/TURKIYE/tr/paris-paris-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X97", "name": "Altı Haftalık Veda", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-28", "time": "14:30", "datetime": "2026-10-28T14:30:00+03:00", "timestamp": 1793187000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X97/TURKIYE/tr/alti-haftalik-veda-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P60", "57P92", "57X67"], "other_screenings": [{"date": "2026-10-26", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X58/TURKIYE/tr/alti-haftalik-veda-26-10-2026-antalya"}, {"date": "2026-10-26", "time": "17:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P07/TURKIYE/tr/alti-haftalik-veda-26-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P92", "name": "Elisa", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-28", "time": "14:30", "datetime": "2026-10-28T14:30:00+03:00", "timestamp": 1793187000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P92/TURKIYE/tr/elisa-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P60", "57X67", "57X97"], "other_screenings": [{"date": "2026-10-28", "time": "13:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P16/TURKIYE/tr/elisa-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X72/TURKIYE/tr/elisa-29-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P17", "name": "Kadim Mavi", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-28", "time": "15:30", "datetime": "2026-10-28T15:30:00+03:00", "timestamp": 1793190600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P17/TURKIYE/tr/kadim-mavi-28-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-27", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X62/TURKIYE/tr/kadim-mavi-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "12:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P96/TURKIYE/tr/kadim-mavi-29-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X31", "name": "Beyaz Kıtaya Yolculuk", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-28", "time": "16:00", "datetime": "2026-10-28T16:00:00+03:00", "timestamp": 1793192400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X31/TURKIYE/tr/beyaz-kitaya-yolculuk-28-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-27", "time": "16:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X24/TURKIYE/tr/beyaz-kitaya-yolculuk-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "21:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P69/TURKIYE/tr/beyaz-kitaya-yolculuk-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X68", "name": "Umut Işığı", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-28", "time": "16:30", "datetime": "2026-10-28T16:30:00+03:00", "timestamp": 1793194200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X68/TURKIYE/tr/umut-isigi-28-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P93", "57X98"], "other_screenings": [{"date": "2026-10-28", "time": "11:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P15/TURKIYE/tr/umut-isigi-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y04/TURKIYE/tr/umut-isigi-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X98", "name": "Sevda", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-28", "time": "16:30", "datetime": "2026-10-28T16:30:00+03:00", "timestamp": 1793194200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X98/TURKIYE/tr/sevda-28-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P93", "57X68"], "other_screenings": [{"date": "2026-10-25", "time": "17:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P02/TURKIYE/tr/sevda-25-10-2026-antalya"}, {"date": "2026-10-26", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X59/TURKIYE/tr/sevda-26-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P93", "name": "Taş ve Tüy", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-28", "time": "16:30", "datetime": "2026-10-28T16:30:00+03:00", "timestamp": 1793194200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P93/TURKIYE/tr/tas-ve-tuy-28-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X68", "57X98"], "other_screenings": [{"date": "2026-10-25", "time": "21:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P04/TURKIYE/tr/tas-ve-tuy-25-10-2026-antalya"}, {"date": "2026-10-27", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X61/TURKIYE/tr/tas-ve-tuy-27-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P61", "name": "Ulusal Kısa Film Yarışması 1. Seçki", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-28", "time": "17:00", "datetime": "2026-10-28T17:00:00+03:00", "timestamp": 1793196000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P61/TURKIYE/tr/ulusal-kisa-film-yarismasi-1-secki-28-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-26", "time": "17:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X19/TURKIYE/tr/ulusal-kisa-film-yarismasi-1-secki-26-10-2026-antalya"}, {"date": "2026-10-29", "time": "16:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X41/TURKIYE/tr/ulusal-kisa-film-yarismasi-1-secki-29-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P18", "name": "Babalarımdan Biri Ay'dır", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-28", "time": "17:30", "datetime": "2026-10-28T17:30:00+03:00", "timestamp": 1793197800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P18/TURKIYE/tr/babalarimdan-biri-ay-dir-28-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57X32"], "other_screenings": [{"date": "2026-10-28", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X69/TURKIYE/tr/babalarimdan-biri-ay-dir-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y03/TURKIYE/tr/babalarimdan-biri-ay-dir-29-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X32", "name": "Zor Zanaat", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-28", "time": "17:30", "datetime": "2026-10-28T17:30:00+03:00", "timestamp": 1793197800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X32/TURKIYE/tr/zor-zanaat-28-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P18"], "other_screenings": [{"date": "2026-10-27", "time": "17:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X25/TURKIYE/tr/zor-zanaat-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "18:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P67/TURKIYE/tr/zor-zanaat-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X69", "name": "Babalarımdan Biri Ay'dır", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-28", "time": "18:30", "datetime": "2026-10-28T18:30:00+03:00", "timestamp": 1793201400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X69/TURKIYE/tr/babalarimdan-biri-ay-dir-28-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P94", "57X99"], "other_screenings": [{"date": "2026-10-28", "time": "17:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P18/TURKIYE/tr/babalarimdan-biri-ay-dir-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y03/TURKIYE/tr/babalarimdan-biri-ay-dir-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57X99", "name": "Bir Türk Meselesi", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-28", "time": "18:30", "datetime": "2026-10-28T18:30:00+03:00", "timestamp": 1793201400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X99/TURKIYE/tr/bir-turk-meselesi-28-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P94", "57X69"], "other_screenings": [{"date": "2026-10-25", "time": "14:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P01/TURKIYE/tr/bir-turk-meselesi-25-10-2026-antalya"}, {"date": "2026-10-26", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X60/TURKIYE/tr/bir-turk-meselesi-26-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P94", "name": "Tatlı Maya", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-28", "time": "18:30", "datetime": "2026-10-28T18:30:00+03:00", "timestamp": 1793201400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P94/TURKIYE/tr/tatli-maya-28-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X69", "57X99"], "other_screenings": [{"date": "2026-10-25", "time": "19:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P03/TURKIYE/tr/tatli-maya-25-10-2026-antalya"}, {"date": "2026-10-27", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X64/TURKIYE/tr/tatli-maya-27-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P62", "name": "Prima Ballerina Meriç", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-28", "time": "19:00", "datetime": "2026-10-28T19:00:00+03:00", "timestamp": 1793203200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P62/TURKIYE/tr/prima-ballerina-meric-28-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57X33"], "other_screenings": [{"date": "2026-10-26", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X20/TURKIYE/tr/prima-ballerina-meric-26-10-2026-antalya"}, {"date": "2026-10-29", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X42/TURKIYE/tr/prima-ballerina-meric-29-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X33", "name": "Uzakta", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-28", "time": "19:00", "datetime": "2026-10-28T19:00:00+03:00", "timestamp": 1793203200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X33/TURKIYE/tr/uzakta-28-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P62"], "other_screenings": [{"date": "2026-10-27", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X26/TURKIYE/tr/uzakta-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "20:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P68/TURKIYE/tr/uzakta-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P19", "name": "Riverstone", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-28", "time": "19:30", "datetime": "2026-10-28T19:30:00+03:00", "timestamp": 1793205000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P19/TURKIYE/tr/riverstone-28-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-28", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y01/TURKIYE/tr/riverstone-28-10-2026-antalya"}, {"date": "2026-10-30", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X79/TURKIYE/tr/riverstone-30-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57P63", "name": "Posta Kutusu 213 Diyarbakır", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-28", "time": "21:00", "datetime": "2026-10-28T21:00:00+03:00", "timestamp": 1793210400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P63/TURKIYE/tr/posta-kutusu-213-diyarbakir-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P95", "57X70", "57Y01"], "other_screenings": [{"date": "2026-10-25", "time": "21:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X13/TURKIYE/tr/posta-kutusu-213-diyarbakir-25-10-2026-antalya"}, {"date": "2026-10-30", "time": "21:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X50/TURKIYE/tr/posta-kutusu-213-diyarbakir-30-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X70", "name": "Siyah Tavşan, Beyaz Tavşan", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-28", "time": "21:00", "datetime": "2026-10-28T21:00:00+03:00", "timestamp": 1793210400, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X70/TURKIYE/tr/siyah-tavsan-beyaz-tavsan-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P63", "57P95", "57Y01"], "other_screenings": [{"date": "2026-10-27", "time": "14:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P11/TURKIYE/tr/siyah-tavsan-beyaz-tavsan-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y06/TURKIYE/tr/siyah-tavsan-beyaz-tavsan-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y01", "name": "Riverstone", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-28", "time": "21:00", "datetime": "2026-10-28T21:00:00+03:00", "timestamp": 1793210400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y01/TURKIYE/tr/riverstone-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P63", "57P95", "57X70"], "other_screenings": [{"date": "2026-10-28", "time": "19:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P19/TURKIYE/tr/riverstone-28-10-2026-antalya"}, {"date": "2026-10-30", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X79/TURKIYE/tr/riverstone-30-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P95", "name": "Artakalan", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-28", "time": "21:00", "datetime": "2026-10-28T21:00:00+03:00", "timestamp": 1793210400, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57P95/TURKIYE/tr/artakalan-28-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P63", "57X70", "57Y01"], "other_screenings": [{"date": "2026-10-26", "time": "14:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P06/TURKIYE/tr/artakalan-26-10-2026-antalya"}, {"date": "2026-10-27", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X65/TURKIYE/tr/artakalan-27-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P20", "name": "Hakikatin Ölümü", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-28", "time": "21:30", "datetime": "2026-10-28T21:30:00+03:00", "timestamp": 1793212200, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57P20/TURKIYE/tr/hakikatin-olumu-28-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-29", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X71/TURKIYE/tr/hakikatin-olumu-29-10-2026-antalya"}, {"date": "2026-10-30", "time": "14:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X03/TURKIYE/tr/hakikatin-olumu-30-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57P64", "name": "Kül ve Tuz", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-29", "time": "10:30", "datetime": "2026-10-29T10:30:00+03:00", "timestamp": 1793259000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P64/TURKIYE/tr/kul-ve-tuz-29-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P21"], "other_screenings": [{"date": "2026-10-25", "time": "15:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X10/TURKIYE/tr/kul-ve-tuz-25-10-2026-antalya"}, {"date": "2026-10-30", "time": "15:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X47/TURKIYE/tr/kul-ve-tuz-30-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P21", "name": "Yıkılmak", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-29", "time": "10:30", "datetime": "2026-10-29T10:30:00+03:00", "timestamp": 1793259000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P21/TURKIYE/tr/yikilmak-29-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P64"], "other_screenings": [{"date": "2026-10-27", "time": "11:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X22/TURKIYE/tr/yikilmak-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "11:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X29/TURKIYE/tr/yikilmak-28-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57P22", "name": "Minotor", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-29", "time": "12:00", "datetime": "2026-10-29T12:00:00+03:00", "timestamp": 1793264400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P22/TURKIYE/tr/minotor-29-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57X36"], "other_screenings": [{"date": "2026-10-27", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X95/TURKIYE/tr/minotor-27-10-2026-antalya"}, {"date": "2026-10-30", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y11/TURKIYE/tr/minotor-30-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X36", "name": "Anadolu'nun Kayıp Pençeleri", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-29", "time": "12:00", "datetime": "2026-10-29T12:00:00+03:00", "timestamp": 1793264400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X36/TURKIYE/tr/anadolu-nun-kayip-penceleri-29-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P22"], "other_screenings": [{"date": "2026-10-26", "time": "12:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X14/TURKIYE/tr/anadolu-nun-kayip-penceleri-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "12:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P56/TURKIYE/tr/anadolu-nun-kayip-penceleri-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X37", "name": "Adım Adım Eve", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-29", "time": "12:30", "datetime": "2026-10-29T12:30:00+03:00", "timestamp": 1793266200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X37/TURKIYE/tr/adim-adim-eve-29-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P96", "57X71", "57Y02"], "other_screenings": [{"date": "2026-10-26", "time": "12:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X15/TURKIYE/tr/adim-adim-eve-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "12:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P57/TURKIYE/tr/adim-adim-eve-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X71", "name": "Hakikatin Ölümü", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-29", "time": "12:30", "datetime": "2026-10-29T12:30:00+03:00", "timestamp": 1793266200, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X71/TURKIYE/tr/hakikatin-olumu-29-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P96", "57X37", "57Y02"], "other_screenings": [{"date": "2026-10-28", "time": "21:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P20/TURKIYE/tr/hakikatin-olumu-28-10-2026-antalya"}, {"date": "2026-10-30", "time": "14:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X03/TURKIYE/tr/hakikatin-olumu-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y02", "name": "Üzgün Kızlar", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-29", "time": "12:30", "datetime": "2026-10-29T12:30:00+03:00", "timestamp": 1793266200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y02/TURKIYE/tr/uzgun-kizlar-29-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P96", "57X37", "57X71"], "other_screenings": [{"date": "2026-10-26", "time": "12:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P05/TURKIYE/tr/uzgun-kizlar-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "18:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y10/TURKIYE/tr/uzgun-kizlar-30-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P96", "name": "Kadim Mavi", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-29", "time": "12:30", "datetime": "2026-10-29T12:30:00+03:00", "timestamp": 1793266200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P96/TURKIYE/tr/kadim-mavi-29-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X37", "57X71", "57Y02"], "other_screenings": [{"date": "2026-10-27", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X62/TURKIYE/tr/kadim-mavi-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "15:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P17/TURKIYE/tr/kadim-mavi-28-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57X38", "name": "Hayaletin Evi Yok", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-29", "time": "13:00", "datetime": "2026-10-29T13:00:00+03:00", "timestamp": 1793268000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X38/TURKIYE/tr/hayaletin-evi-yok-29-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-26", "time": "13:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X16/TURKIYE/tr/hayaletin-evi-yok-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "13:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P58/TURKIYE/tr/hayaletin-evi-yok-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X39", "name": "Arayış", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-29", "time": "13:30", "datetime": "2026-10-29T13:30:00+03:00", "timestamp": 1793269800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X39/TURKIYE/tr/arayis-29-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-26", "time": "13:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X17/TURKIYE/tr/arayis-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "13:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P59/TURKIYE/tr/arayis-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P65", "name": "Ulusal Kısa Film Yarışması 2. Seçki", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-29", "time": "14:00", "datetime": "2026-10-29T14:00:00+03:00", "timestamp": 1793271600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P65/TURKIYE/tr/ulusal-kisa-film-yarismasi-2-secki-29-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-27", "time": "13:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X23/TURKIYE/tr/ulusal-kisa-film-yarismasi-2-secki-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "13:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X30/TURKIYE/tr/ulusal-kisa-film-yarismasi-2-secki-28-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P23", "name": "Cinlerin Düğünü", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-29", "time": "14:30", "datetime": "2026-10-29T14:30:00+03:00", "timestamp": 1793273400, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57P23/TURKIYE/tr/cinlerin-dugunu-29-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P97", "57X40", "57X72", "57Y03"], "other_screenings": [{"date": "2026-10-29", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X75/TURKIYE/tr/cinlerin-dugunu-29-10-2026-antalya"}, {"date": "2026-10-30", "time": "21:00", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X06/TURKIYE/tr/cinlerin-dugunu-30-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X40", "name": "Denizyıldızı: Bir Cesaret Öyküsü", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-29", "time": "14:30", "datetime": "2026-10-29T14:30:00+03:00", "timestamp": 1793273400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X40/TURKIYE/tr/denizyildizi-bir-cesaret-oykusu-29-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P23", "57P97", "57X72", "57Y03"], "other_screenings": [{"date": "2026-10-26", "time": "14:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X18/TURKIYE/tr/denizyildizi-bir-cesaret-oykusu-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "14:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P60/TURKIYE/tr/denizyildizi-bir-cesaret-oykusu-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X72", "name": "Elisa", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-29", "time": "14:30", "datetime": "2026-10-29T14:30:00+03:00", "timestamp": 1793273400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X72/TURKIYE/tr/elisa-29-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P23", "57P97", "57X40", "57Y03"], "other_screenings": [{"date": "2026-10-28", "time": "13:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P16/TURKIYE/tr/elisa-28-10-2026-antalya"}, {"date": "2026-10-28", "time": "14:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P92/TURKIYE/tr/elisa-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y03", "name": "Babalarımdan Biri Ay'dır", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-29", "time": "14:30", "datetime": "2026-10-29T14:30:00+03:00", "timestamp": 1793273400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y03/TURKIYE/tr/babalarimdan-biri-ay-dir-29-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P23", "57P97", "57X40", "57X72"], "other_screenings": [{"date": "2026-10-28", "time": "17:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P18/TURKIYE/tr/babalarimdan-biri-ay-dir-28-10-2026-antalya"}, {"date": "2026-10-28", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X69/TURKIYE/tr/babalarimdan-biri-ay-dir-28-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P97", "name": "İsimsiz Eserler Mezarlığı", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-29", "time": "14:30", "datetime": "2026-10-29T14:30:00+03:00", "timestamp": 1793273400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P97/TURKIYE/tr/isimsiz-eserler-mezarligi-29-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P23", "57X40", "57X72", "57Y03"], "other_screenings": [{"date": "2026-10-27", "time": "12:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P86/TURKIYE/tr/isimsiz-eserler-mezarligi-27-10-2026-antalya"}, {"date": "2026-10-30", "time": "19:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P30/TURKIYE/tr/isimsiz-eserler-mezarligi-30-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P66", "name": "Modernist: Usmanbaş", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-29", "time": "16:30", "datetime": "2026-10-29T16:30:00+03:00", "timestamp": 1793280600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P66/TURKIYE/tr/modernist-usmanbas-29-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P98", "57X41", "57X73", "57Y04"], "other_screenings": [], "shortVenue": "AKM Perge", "isSingleScreening": true}, {"code": "57X41", "name": "Ulusal Kısa Film Yarışması 1. Seçki", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-29", "time": "16:30", "datetime": "2026-10-29T16:30:00+03:00", "timestamp": 1793280600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X41/TURKIYE/tr/ulusal-kisa-film-yarismasi-1-secki-29-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P66", "57P98", "57X73", "57Y04"], "other_screenings": [{"date": "2026-10-26", "time": "17:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X19/TURKIYE/tr/ulusal-kisa-film-yarismasi-1-secki-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "17:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P61/TURKIYE/tr/ulusal-kisa-film-yarismasi-1-secki-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X73", "name": "Selma", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-29", "time": "16:30", "datetime": "2026-10-29T16:30:00+03:00", "timestamp": 1793280600, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X73/TURKIYE/tr/selma-29-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P66", "57P98", "57X41", "57Y04"], "other_screenings": [{"date": "2026-10-29", "time": "17:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P24/TURKIYE/tr/selma-29-10-2026-antalya"}, {"date": "2026-10-30", "time": "12:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X02/TURKIYE/tr/selma-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y04", "name": "Umut Işığı", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-29", "time": "16:30", "datetime": "2026-10-29T16:30:00+03:00", "timestamp": 1793280600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y04/TURKIYE/tr/umut-isigi-29-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P66", "57P98", "57X41", "57X73"], "other_screenings": [{"date": "2026-10-28", "time": "11:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P15/TURKIYE/tr/umut-isigi-28-10-2026-antalya"}, {"date": "2026-10-28", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X68/TURKIYE/tr/umut-isigi-28-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P98", "name": "Ölü Arının İğnesi", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-29", "time": "16:30", "datetime": "2026-10-29T16:30:00+03:00", "timestamp": 1793280600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P98/TURKIYE/tr/olu-arinin-ignesi-29-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P66", "57X41", "57X73", "57Y04"], "other_screenings": [{"date": "2026-10-27", "time": "19:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P13/TURKIYE/tr/olu-arinin-ignesi-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "18:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X74/TURKIYE/tr/olu-arinin-ignesi-29-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P24", "name": "Selma", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-29", "time": "17:00", "datetime": "2026-10-29T17:00:00+03:00", "timestamp": 1793282400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P24/TURKIYE/tr/selma-29-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-29", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X73/TURKIYE/tr/selma-29-10-2026-antalya"}, {"date": "2026-10-30", "time": "12:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X02/TURKIYE/tr/selma-30-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57P67", "name": "Zor Zanaat", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-29", "time": "18:00", "datetime": "2026-10-29T18:00:00+03:00", "timestamp": 1793286000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P67/TURKIYE/tr/zor-zanaat-29-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-27", "time": "17:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X25/TURKIYE/tr/zor-zanaat-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "17:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X32/TURKIYE/tr/zor-zanaat-28-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X74", "name": "Ölü Arının İğnesi", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-29", "time": "18:30", "datetime": "2026-10-29T18:30:00+03:00", "timestamp": 1793287800, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X74/TURKIYE/tr/olu-arinin-ignesi-29-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P99", "57Y05"], "other_screenings": [{"date": "2026-10-27", "time": "19:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P13/TURKIYE/tr/olu-arinin-ignesi-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "16:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P98/TURKIYE/tr/olu-arinin-ignesi-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y05", "name": "Paris Paris", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-29", "time": "18:30", "datetime": "2026-10-29T18:30:00+03:00", "timestamp": 1793287800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y05/TURKIYE/tr/paris-paris-29-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P99", "57X74"], "other_screenings": [{"date": "2026-10-27", "time": "21:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P14/TURKIYE/tr/paris-paris-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X67/TURKIYE/tr/paris-paris-28-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57P99", "name": "Tavuri", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-29", "time": "18:30", "datetime": "2026-10-29T18:30:00+03:00", "timestamp": 1793287800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P99/TURKIYE/tr/tavuri-29-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X74", "57Y05"], "other_screenings": [{"date": "2026-10-27", "time": "18:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P89/TURKIYE/tr/tavuri-27-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P25", "name": "Son Oyun", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-29", "time": "19:00", "datetime": "2026-10-29T19:00:00+03:00", "timestamp": 1793289600, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57P25/TURKIYE/tr/son-oyun-29-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57X42"], "other_screenings": [], "shortVenue": "AKM Aspendos", "isSingleScreening": true}, {"code": "57X42", "name": "Prima Ballerina Meriç", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-29", "time": "19:00", "datetime": "2026-10-29T19:00:00+03:00", "timestamp": 1793289600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X42/TURKIYE/tr/prima-ballerina-meric-29-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P25"], "other_screenings": [{"date": "2026-10-26", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X20/TURKIYE/tr/prima-ballerina-meric-26-10-2026-antalya"}, {"date": "2026-10-28", "time": "19:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P62/TURKIYE/tr/prima-ballerina-meric-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P68", "name": "Uzakta", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-29", "time": "20:00", "datetime": "2026-10-29T20:00:00+03:00", "timestamp": 1793293200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P68/TURKIYE/tr/uzakta-29-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-27", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X26/TURKIYE/tr/uzakta-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X33/TURKIYE/tr/uzakta-28-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X43", "name": "Ana'dolu: Bacılar, Bibiler ve Ezeler", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-29", "time": "21:00", "datetime": "2026-10-29T21:00:00+03:00", "timestamp": 1793296800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X43/TURKIYE/tr/ana-dolu-bacilar-bibiler-ve-ezeler-29-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X01", "57X75", "57Y06"], "other_screenings": [{"date": "2026-10-26", "time": "21:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X21/TURKIYE/tr/ana-dolu-bacilar-bibiler-ve-ezeler-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "15:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P71/TURKIYE/tr/ana-dolu-bacilar-bibiler-ve-ezeler-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X75", "name": "Cinlerin Düğünü", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-29", "time": "21:00", "datetime": "2026-10-29T21:00:00+03:00", "timestamp": 1793296800, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X75/TURKIYE/tr/cinlerin-dugunu-29-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X01", "57X43", "57Y06"], "other_screenings": [{"date": "2026-10-29", "time": "14:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P23/TURKIYE/tr/cinlerin-dugunu-29-10-2026-antalya"}, {"date": "2026-10-30", "time": "21:00", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X06/TURKIYE/tr/cinlerin-dugunu-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y06", "name": "Siyah Tavşan, Beyaz Tavşan", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-29", "time": "21:00", "datetime": "2026-10-29T21:00:00+03:00", "timestamp": 1793296800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y06/TURKIYE/tr/siyah-tavsan-beyaz-tavsan-29-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X01", "57X43", "57X75"], "other_screenings": [{"date": "2026-10-27", "time": "14:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P11/TURKIYE/tr/siyah-tavsan-beyaz-tavsan-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X70/TURKIYE/tr/siyah-tavsan-beyaz-tavsan-28-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57X01", "name": "Flaşbellek", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-29", "time": "21:00", "datetime": "2026-10-29T21:00:00+03:00", "timestamp": 1793296800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X01/TURKIYE/tr/flasbellek-29-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X43", "57X75", "57Y06"], "other_screenings": [{"date": "2026-10-26", "time": "21:00", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P85/TURKIYE/tr/flasbellek-26-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P69", "name": "Beyaz Kıtaya Yolculuk", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-29", "time": "21:30", "datetime": "2026-10-29T21:30:00+03:00", "timestamp": 1793298600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P69/TURKIYE/tr/beyaz-kitaya-yolculuk-29-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P26"], "other_screenings": [{"date": "2026-10-27", "time": "16:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X24/TURKIYE/tr/beyaz-kitaya-yolculuk-27-10-2026-antalya"}, {"date": "2026-10-28", "time": "16:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X31/TURKIYE/tr/beyaz-kitaya-yolculuk-28-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P26", "name": "Son Yemek", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-29", "time": "21:30", "datetime": "2026-10-29T21:30:00+03:00", "timestamp": 1793298600, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57P26/TURKIYE/tr/son-yemek-29-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P69"], "other_screenings": [], "shortVenue": "AKM Aspendos", "isSingleScreening": true}, {"code": "57P70", "name": "Mükellef", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-30", "time": "11:00", "datetime": "2026-10-30T11:00:00+03:00", "timestamp": 1793347200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P70/TURKIYE/tr/mukellef-30-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57X44"], "other_screenings": [], "shortVenue": "AKM Perge", "isSingleScreening": true}, {"code": "57X44", "name": "Kameranın Ardındaki Kadınlar", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-30", "time": "11:00", "datetime": "2026-10-30T11:00:00+03:00", "timestamp": 1793347200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X44/TURKIYE/tr/kameranin-ardindaki-kadinlar-30-10-2026-antalya", "conflict_count": 1, "conflicting_events": ["57P70"], "other_screenings": [{"date": "2026-10-25", "time": "11:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X07/TURKIYE/tr/kameranin-ardindaki-kadinlar-25-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P27", "name": "Bekle Bizi Brüksel", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-30", "time": "12:00", "datetime": "2026-10-30T12:00:00+03:00", "timestamp": 1793350800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P27/TURKIYE/tr/bekle-bizi-bruksel-30-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-30", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X76/TURKIYE/tr/bekle-bizi-bruksel-30-10-2026-antalya"}, {"date": "2026-10-30", "time": "18:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X05/TURKIYE/tr/bekle-bizi-bruksel-30-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X45", "name": "Kameram 45 Kilo", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-30", "time": "12:30", "datetime": "2026-10-30T12:30:00+03:00", "timestamp": 1793352600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X45/TURKIYE/tr/kameram-45-kilo-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X02", "57X76", "57Y07"], "other_screenings": [{"date": "2026-10-25", "time": "12:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X08/TURKIYE/tr/kameram-45-kilo-25-10-2026-antalya"}, {"date": "2026-10-30", "time": "16:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P72/TURKIYE/tr/kameram-45-kilo-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X76", "name": "Bekle Bizi Brüksel", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-30", "time": "12:30", "datetime": "2026-10-30T12:30:00+03:00", "timestamp": 1793352600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X76/TURKIYE/tr/bekle-bizi-bruksel-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X02", "57X45", "57Y07"], "other_screenings": [{"date": "2026-10-30", "time": "12:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P27/TURKIYE/tr/bekle-bizi-bruksel-30-10-2026-antalya"}, {"date": "2026-10-30", "time": "18:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X05/TURKIYE/tr/bekle-bizi-bruksel-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y07", "name": "Uyuyan Kadın", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-30", "time": "12:30", "datetime": "2026-10-30T12:30:00+03:00", "timestamp": 1793352600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y07/TURKIYE/tr/uyuyan-kadin-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X02", "57X45", "57X76"], "other_screenings": [{"date": "2026-10-26", "time": "21:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P48/TURKIYE/tr/uyuyan-kadin-26-10-2026-antalya"}, {"date": "2026-10-27", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X93/TURKIYE/tr/uyuyan-kadin-27-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57X02", "name": "Selma", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-30", "time": "12:30", "datetime": "2026-10-30T12:30:00+03:00", "timestamp": 1793352600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X02/TURKIYE/tr/selma-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X45", "57X76", "57Y07"], "other_screenings": [{"date": "2026-10-29", "time": "16:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X73/TURKIYE/tr/selma-29-10-2026-antalya"}, {"date": "2026-10-29", "time": "17:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P24/TURKIYE/tr/selma-29-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57X46", "name": "Allianoi Diye Bir Yer Yok", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-30", "time": "14:00", "datetime": "2026-10-30T14:00:00+03:00", "timestamp": 1793358000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X46/TURKIYE/tr/allianoi-diye-bir-yer-yok-30-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-25", "time": "14:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X09/TURKIYE/tr/allianoi-diye-bir-yer-yok-25-10-2026-antalya"}, {"date": "2026-10-30", "time": "17:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P73/TURKIYE/tr/allianoi-diye-bir-yer-yok-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P28", "name": "Gece Yarısı Tüm Aşıklar", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-30", "time": "14:30", "datetime": "2026-10-30T14:30:00+03:00", "timestamp": 1793359800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P28/TURKIYE/tr/gece-yarisi-tum-asiklar-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X03", "57X77", "57Y08"], "other_screenings": [{"date": "2026-10-26", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X90/TURKIYE/tr/gece-yarisi-tum-asiklar-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X80/TURKIYE/tr/gece-yarisi-tum-asiklar-30-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X77", "name": "Bir Anne Hakkında", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-30", "time": "14:30", "datetime": "2026-10-30T14:30:00+03:00", "timestamp": 1793359800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X77/TURKIYE/tr/bir-anne-hakkinda-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P28", "57X03", "57Y08"], "other_screenings": [{"date": "2026-10-27", "time": "17:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P12/TURKIYE/tr/bir-anne-hakkinda-27-10-2026-antalya"}, {"date": "2026-10-30", "time": "16:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57X04/TURKIYE/tr/bir-anne-hakkinda-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y08", "name": "13. Raunt", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-30", "time": "14:30", "datetime": "2026-10-30T14:30:00+03:00", "timestamp": 1793359800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y08/TURKIYE/tr/13-raunt-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P28", "57X03", "57X77"], "other_screenings": [{"date": "2026-10-26", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X57/TURKIYE/tr/13-raunt-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "17:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P29/TURKIYE/tr/13-raunt-30-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57X03", "name": "Hakikatin Ölümü", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-30", "time": "14:30", "datetime": "2026-10-30T14:30:00+03:00", "timestamp": 1793359800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X03/TURKIYE/tr/hakikatin-olumu-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57P28", "57X77", "57Y08"], "other_screenings": [{"date": "2026-10-28", "time": "21:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P20/TURKIYE/tr/hakikatin-olumu-28-10-2026-antalya"}, {"date": "2026-10-29", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X71/TURKIYE/tr/hakikatin-olumu-29-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P71", "name": "Ana'dolu: Bacılar, Bibiler ve Ezeler", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-30", "time": "15:00", "datetime": "2026-10-30T15:00:00+03:00", "timestamp": 1793361600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P71/TURKIYE/tr/ana-dolu-bacilar-bibiler-ve-ezeler-30-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-26", "time": "21:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X21/TURKIYE/tr/ana-dolu-bacilar-bibiler-ve-ezeler-26-10-2026-antalya"}, {"date": "2026-10-29", "time": "21:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X43/TURKIYE/tr/ana-dolu-bacilar-bibiler-ve-ezeler-29-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X47", "name": "Kül ve Tuz", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-30", "time": "15:30", "datetime": "2026-10-30T15:30:00+03:00", "timestamp": 1793363400, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X47/TURKIYE/tr/kul-ve-tuz-30-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-25", "time": "15:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X10/TURKIYE/tr/kul-ve-tuz-25-10-2026-antalya"}, {"date": "2026-10-29", "time": "10:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P64/TURKIYE/tr/kul-ve-tuz-29-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P72", "name": "Kameram 45 Kilo", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-30", "time": "16:00", "datetime": "2026-10-30T16:00:00+03:00", "timestamp": 1793365200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P72/TURKIYE/tr/kameram-45-kilo-30-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-25", "time": "12:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X08/TURKIYE/tr/kameram-45-kilo-25-10-2026-antalya"}, {"date": "2026-10-30", "time": "12:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X45/TURKIYE/tr/kameram-45-kilo-30-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X48", "name": "Ulusal Kısa Film Yarışması 3. Seçki", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-30", "time": "16:30", "datetime": "2026-10-30T16:30:00+03:00", "timestamp": 1793367000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X48/TURKIYE/tr/ulusal-kisa-film-yarismasi-3-secki-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X04", "57X78", "57Y09"], "other_screenings": [{"date": "2026-10-25", "time": "16:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X11/TURKIYE/tr/ulusal-kisa-film-yarismasi-3-secki-25-10-2026-antalya"}, {"date": "2026-10-30", "time": "19:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P74/TURKIYE/tr/ulusal-kisa-film-yarismasi-3-secki-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X78", "name": "Heysel 85", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-30", "time": "16:30", "datetime": "2026-10-30T16:30:00+03:00", "timestamp": 1793367000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X78/TURKIYE/tr/heysel-85-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X04", "57X48", "57Y09"], "other_screenings": [{"date": "2026-10-26", "time": "16:30", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P46/TURKIYE/tr/heysel-85-26-10-2026-antalya"}, {"date": "2026-10-26", "time": "18:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X89/TURKIYE/tr/heysel-85-26-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y09", "name": "Küller", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-30", "time": "16:30", "datetime": "2026-10-30T16:30:00+03:00", "timestamp": 1793367000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y09/TURKIYE/tr/kuller-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X04", "57X48", "57X78"], "other_screenings": [{"date": "2026-10-26", "time": "16:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X88/TURKIYE/tr/kuller-26-10-2026-antalya"}, {"date": "2026-10-26", "time": "19:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P47/TURKIYE/tr/kuller-26-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57X04", "name": "Bir Anne Hakkında", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-30", "time": "16:30", "datetime": "2026-10-30T16:30:00+03:00", "timestamp": 1793367000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X04/TURKIYE/tr/bir-anne-hakkinda-30-10-2026-antalya", "conflict_count": 3, "conflicting_events": ["57X48", "57X78", "57Y09"], "other_screenings": [{"date": "2026-10-27", "time": "17:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P12/TURKIYE/tr/bir-anne-hakkinda-27-10-2026-antalya"}, {"date": "2026-10-30", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X77/TURKIYE/tr/bir-anne-hakkinda-30-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P29", "name": "13. Raunt", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-30", "time": "17:00", "datetime": "2026-10-30T17:00:00+03:00", "timestamp": 1793368800, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P29/TURKIYE/tr/13-raunt-30-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-26", "time": "14:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X57/TURKIYE/tr/13-raunt-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "14:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y08/TURKIYE/tr/13-raunt-30-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57P73", "name": "Allianoi Diye Bir Yer Yok", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-30", "time": "17:30", "datetime": "2026-10-30T17:30:00+03:00", "timestamp": 1793370600, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P73/TURKIYE/tr/allianoi-diye-bir-yer-yok-30-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [{"date": "2026-10-25", "time": "14:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X09/TURKIYE/tr/allianoi-diye-bir-yer-yok-25-10-2026-antalya"}, {"date": "2026-10-30", "time": "14:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X46/TURKIYE/tr/allianoi-diye-bir-yer-yok-30-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X79", "name": "Riverstone", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-30", "time": "18:30", "datetime": "2026-10-30T18:30:00+03:00", "timestamp": 1793374200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X79/TURKIYE/tr/riverstone-30-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X05", "57Y10"], "other_screenings": [{"date": "2026-10-28", "time": "19:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P19/TURKIYE/tr/riverstone-28-10-2026-antalya"}, {"date": "2026-10-28", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y01/TURKIYE/tr/riverstone-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y10", "name": "Üzgün Kızlar", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-30", "time": "18:30", "datetime": "2026-10-30T18:30:00+03:00", "timestamp": 1793374200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y10/TURKIYE/tr/uzgun-kizlar-30-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X05", "57X79"], "other_screenings": [{"date": "2026-10-26", "time": "12:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P05/TURKIYE/tr/uzgun-kizlar-26-10-2026-antalya"}, {"date": "2026-10-29", "time": "12:30", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57Y02/TURKIYE/tr/uzgun-kizlar-29-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57X05", "name": "Bekle Bizi Brüksel", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-30", "time": "18:30", "datetime": "2026-10-30T18:30:00+03:00", "timestamp": 1793374200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X05/TURKIYE/tr/bekle-bizi-bruksel-30-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57X79", "57Y10"], "other_screenings": [{"date": "2026-10-30", "time": "12:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P27/TURKIYE/tr/bekle-bizi-bruksel-30-10-2026-antalya"}, {"date": "2026-10-30", "time": "12:30", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X76/TURKIYE/tr/bekle-bizi-bruksel-30-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P74", "name": "Ulusal Kısa Film Yarışması 3. Seçki", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-30", "time": "19:00", "datetime": "2026-10-30T19:00:00+03:00", "timestamp": 1793376000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P74/TURKIYE/tr/ulusal-kisa-film-yarismasi-3-secki-30-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P30", "57X49"], "other_screenings": [{"date": "2026-10-25", "time": "16:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X11/TURKIYE/tr/ulusal-kisa-film-yarismasi-3-secki-25-10-2026-antalya"}, {"date": "2026-10-30", "time": "16:30", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X48/TURKIYE/tr/ulusal-kisa-film-yarismasi-3-secki-30-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57P30", "name": "İsimsiz Eserler Mezarlığı", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-30", "time": "19:00", "datetime": "2026-10-30T19:00:00+03:00", "timestamp": 1793376000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P30/TURKIYE/tr/isimsiz-eserler-mezarligi-30-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P74", "57X49"], "other_screenings": [{"date": "2026-10-27", "time": "12:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P86/TURKIYE/tr/isimsiz-eserler-mezarligi-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "14:30", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "url": "https://www.biletix.com/etkinlik/57P97/TURKIYE/tr/isimsiz-eserler-mezarligi-29-10-2026-antalya"}], "shortVenue": "AKM Aspendos", "isSingleScreening": false}, {"code": "57X49", "name": "River Dreams", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-30", "time": "19:00", "datetime": "2026-10-30T19:00:00+03:00", "timestamp": 1793376000, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X49/TURKIYE/tr/river-dreams-30-10-2026-antalya", "conflict_count": 2, "conflicting_events": ["57P30", "57P74"], "other_screenings": [{"date": "2026-10-25", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X12/TURKIYE/tr/river-dreams-25-10-2026-antalya"}, {"date": "2026-10-30", "time": "21:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P75/TURKIYE/tr/river-dreams-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57P75", "name": "River Dreams", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "date": "2026-10-30", "time": "21:00", "datetime": "2026-10-30T21:00:00+03:00", "timestamp": 1793383200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57P75/TURKIYE/tr/river-dreams-30-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57X06", "57X50", "57X80", "57Y11"], "other_screenings": [{"date": "2026-10-25", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X12/TURKIYE/tr/river-dreams-25-10-2026-antalya"}, {"date": "2026-10-30", "time": "19:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X49/TURKIYE/tr/river-dreams-30-10-2026-antalya"}], "shortVenue": "AKM Perge", "isSingleScreening": false}, {"code": "57X50", "name": "Posta Kutusu 213 Diyarbakır", "venue": "Paribu Cineverse 4 - Migros AVM", "date": "2026-10-30", "time": "21:00", "datetime": "2026-10-30T21:00:00+03:00", "timestamp": 1793383200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57X50/TURKIYE/tr/posta-kutusu-213-diyarbakir-30-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P75", "57X06", "57X80", "57Y11"], "other_screenings": [{"date": "2026-10-25", "time": "21:00", "venue": "Paribu Cineverse 4 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X13/TURKIYE/tr/posta-kutusu-213-diyarbakir-25-10-2026-antalya"}, {"date": "2026-10-28", "time": "21:00", "venue": "Antalya - Atatürk Kültür Merkezi - Perge Salonu", "url": "https://www.biletix.com/etkinlik/57P63/TURKIYE/tr/posta-kutusu-213-diyarbakir-28-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 4 (Migros)", "isSingleScreening": false}, {"code": "57X80", "name": "Gece Yarısı Tüm Aşıklar", "venue": "Paribu Cineverse 7 - Migros AVM", "date": "2026-10-30", "time": "21:00", "datetime": "2026-10-30T21:00:00+03:00", "timestamp": 1793383200, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X80/TURKIYE/tr/gece-yarisi-tum-asiklar-30-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P75", "57X06", "57X50", "57Y11"], "other_screenings": [{"date": "2026-10-26", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X90/TURKIYE/tr/gece-yarisi-tum-asiklar-26-10-2026-antalya"}, {"date": "2026-10-30", "time": "14:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P28/TURKIYE/tr/gece-yarisi-tum-asiklar-30-10-2026-antalya"}], "shortVenue": "Paribu Cineverse 7 (Migros)", "isSingleScreening": false}, {"code": "57Y11", "name": "Minotor", "venue": "TerraCity AVM Cinema Pink 1.Salon", "date": "2026-10-30", "time": "21:00", "datetime": "2026-10-30T21:00:00+03:00", "timestamp": 1793383200, "price": 20.0, "url": "https://www.biletix.com/etkinlik/57Y11/TURKIYE/tr/minotor-30-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P75", "57X06", "57X50", "57X80"], "other_screenings": [{"date": "2026-10-27", "time": "21:00", "venue": "TerraCity AVM Cinema Pink 1.Salon", "url": "https://www.biletix.com/etkinlik/57X95/TURKIYE/tr/minotor-27-10-2026-antalya"}, {"date": "2026-10-29", "time": "12:00", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P22/TURKIYE/tr/minotor-29-10-2026-antalya"}], "shortVenue": "TerraCity Cinema Pink 1", "isSingleScreening": false}, {"code": "57X06", "name": "Cinlerin Düğünü", "venue": "ÖzdilekPark AVM Cinetime 1.Salon", "date": "2026-10-30", "time": "21:00", "datetime": "2026-10-30T21:00:00+03:00", "timestamp": 1793383200, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57X06/TURKIYE/tr/cinlerin-dugunu-30-10-2026-antalya", "conflict_count": 4, "conflicting_events": ["57P75", "57X50", "57X80", "57Y11"], "other_screenings": [{"date": "2026-10-29", "time": "14:30", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "url": "https://www.biletix.com/etkinlik/57P23/TURKIYE/tr/cinlerin-dugunu-29-10-2026-antalya"}, {"date": "2026-10-29", "time": "21:00", "venue": "Paribu Cineverse 7 - Migros AVM", "url": "https://www.biletix.com/etkinlik/57X75/TURKIYE/tr/cinlerin-dugunu-29-10-2026-antalya"}], "shortVenue": "ÖzdilekPark Cinetime 1", "isSingleScreening": false}, {"code": "57P31", "name": "Çakallarla Dans 8: Şututgart Çıkarması", "venue": "Atatürk Kültür Merkezi - Aspendos Salonu", "date": "2026-10-30", "time": "21:30", "datetime": "2026-10-30T21:30:00+03:00", "timestamp": 1793385000, "price": 0.0, "url": "https://www.biletix.com/etkinlik/57P31/TURKIYE/tr/cakallarla-dans-8-sututgart-cikarmasi-30-10-2026-antalya", "conflict_count": 0, "conflicting_events": [], "other_screenings": [], "shortVenue": "AKM Aspendos", "isSingleScreening": true}];
+    const VENUES = [
+      "Atatürk Kültür Merkezi - Aspendos Salonu",
+      "Antalya - Atatürk Kültür Merkezi - Perge Salonu",
+      "Paribu Cineverse 4 - Migros AVM",
+      "Paribu Cineverse 7 - Migros AVM",
+      "TerraCity AVM Cinema Pink 1.Salon",
+      "ÖzdilekPark AVM Cinetime 1.Salon"
+    ];
+
+    let currentDate = "2026-10-25";
+    let currentView = "calendar";
+    let mySchedule = JSON.parse(localStorage.getItem('altin_portakal_my_schedule') || '[]');
+
+    function saveSchedule() {
+      localStorage.setItem('altin_portakal_my_schedule', JSON.stringify(mySchedule));
+      document.getElementById('myCount').textContent = mySchedule.length;
+    }
+
+    function toggleSchedule(code) {
+      const idx = mySchedule.indexOf(code);
+      if (idx > -1) {
+        mySchedule.splice(idx, 1);
+      } else {
+        mySchedule.push(code);
+      }
+      saveSchedule();
+      renderCurrentView();
+      if (currentView === 'my-schedule') {
+        renderMySchedule();
+      }
+    }
+
+    function switchView(view) {
+      currentView = view;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      document.getElementById('viewCalendar').style.display = view === 'calendar' ? 'block' : 'none';
+      document.getElementById('viewConflicts').style.display = view === 'conflicts' ? 'block' : 'none';
+      document.getElementById('viewTable').style.display = view === 'table' ? 'block' : 'none';
+      document.getElementById('viewMySchedule').style.display = view === 'my-schedule' ? 'block' : 'none';
+
+      renderCurrentView();
+    }
+
+    function selectDate(date) {
+      currentDate = date;
+      document.querySelectorAll('.day-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-date') === date);
+      });
+      renderCurrentView();
+    }
+
+    function handleSearch() {
+      renderCurrentView();
+    }
+
+    function handleFilterChange() {
+      renderCurrentView();
+    }
+
+    function renderCurrentView() {
+      if (currentView === 'calendar') renderCalendar();
+      else if (currentView === 'conflicts') renderConflicts();
+      else if (currentView === 'table') renderMasterTable();
+      else if (currentView === 'my-schedule') renderMySchedule();
+    }
+
+    function getFilteredEvents(forCurrentDateOnly = true) {
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+      const onlyClash = document.getElementById('onlyClashCheckbox').checked;
+      const onlySingle = document.getElementById('onlySingleCheckbox').checked;
+
+      return ALL_EVENTS.filter(e => {
+        if (forCurrentDateOnly && e.date !== currentDate) return false;
+        if (search) {
+          const matchName = e.name.toLowerCase().includes(search);
+          const matchVenue = e.venue.toLowerCase().includes(search) || e.shortVenue.toLowerCase().includes(search);
+          if (!matchName && !matchVenue) return false;
+        }
+        if (onlyClash && e.conflict_count === 0) return false;
+        if (onlySingle && !e.isSingleScreening) return false;
+        return true;
+      });
+    }
+
+    function renderCalendar() {
+      const filtered = getFilteredEvents(true);
+      const calendarBody = document.getElementById('calendarBody');
+      calendarBody.innerHTML = '';
+
+      // Get all distinct times on current date
+      const dayEvents = ALL_EVENTS.filter(e => e.date === currentDate);
+      const times = [...new Set(dayEvents.map(e => e.time))].sort();
+
+      if (times.length === 0) {
+        calendarBody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:30px; color:#94a3b8;">Bu tarihte seans bulunamadı.</td></tr>';
+        return;
+      }
+
+      times.forEach(t => {
+        const eventsAtTime = filtered.filter(e => e.time === t);
+        // Only show row if at least one event matches filter or if no filters
+        const allAtTime = dayEvents.filter(e => e.time === t);
+        if (eventsAtTime.length === 0 && (document.getElementById('searchInput').value || document.getElementById('onlyClashCheckbox').checked || document.getElementById('onlySingleCheckbox').checked)) {
+          return;
+        }
+
+        const tr = document.createElement('tr');
+        
+        // Time cell
+        const tdTime = document.createElement('td');
+        tdTime.className = 'time-col';
+        tdTime.innerHTML = `<div>${t}</div><div style="font-size:10px; color:#94a3b8; font-weight:normal;">${allAtTime.length} Salon</div>`;
+        tr.appendChild(tdTime);
+
+        // Venues cells
+        VENUES.forEach(venue => {
+          const td = document.createElement('td');
+          const ev = eventsAtTime.find(e => e.venue === venue);
+          if (ev) {
+            const isAdded = mySchedule.includes(ev.code);
+            const clashBadge = ev.conflict_count > 0 
+              ? `<span class="conflict-pill clash" title="${ev.conflict_count} diğer salonda seans var">⚡ ${ev.conflict_count+1} Çakışma</span>`
+              : `<span class="conflict-pill solo">✓ Tek Seans</span>`;
+
+            const singleBadge = ev.isSingleScreening
+              ? `<span style="font-size:9.5px; background:#ef444422; color:#f87171; border:1px solid #ef444455; padding:1px 4px; border-radius:3px;">🚨 Tek Gösterim</span>`
+              : `<span style="font-size:9.5px; background:#3b82f622; color:#60a5fa; border:1px solid #3b82f655; padding:1px 4px; border-radius:3px;">+${ev.other_screenings.length} Alternatif</span>`;
+
+            td.innerHTML = `
+              <div class="event-card ${ev.conflict_count > 0 ? 'has-conflict' : ''} ${ev.isSingleScreening ? 'single-screening' : ''} ${isAdded ? 'selected-my-schedule' : ''}" onclick="showModal('${ev.code}')">
+                <div class="card-top">
+                  <span class="time-badge">${ev.time}</span>
+                  ${clashBadge}
+                </div>
+                <div class="film-title" title="${ev.name}">${ev.name}</div>
+                <div>${singleBadge}</div>
+                <div class="card-footer" onclick="event.stopPropagation()">
+                  <a href="${ev.url}" target="_blank" class="btn-buy">Biletix ↗</a>
+                  <button class="btn-schedule-toggle ${isAdded ? 'added' : ''}" onclick="toggleSchedule('${ev.code}')" title="${isAdded ? 'Programımdan Çıkar' : 'Programıma Ekle'}">
+                    ${isAdded ? '★' : '+'}
+                  </button>
+                </div>
+              </div>
+            `;
+          }
+          tr.appendChild(td);
+        });
+
+        calendarBody.appendChild(tr);
+      });
+    }
+
+    function renderConflicts() {
+      const container = document.getElementById('conflictsContainer');
+      container.innerHTML = '';
+
+      const dayEvents = ALL_EVENTS.filter(e => e.date === currentDate);
+      const times = [...new Set(dayEvents.map(e => e.time))].sort();
+
+      let count = 0;
+      times.forEach(t => {
+        const simultaneous = dayEvents.filter(e => e.time === t);
+        if (simultaneous.length > 1) {
+          count++;
+          const div = document.createElement('div');
+          div.className = 'conflict-group';
+          
+          let cardsHtml = simultaneous.map(ev => {
+            const isAdded = mySchedule.includes(ev.code);
+            const altHtml = ev.other_screenings.length > 0 
+              ? `<div style="font-size:12px; color:#38bdf8; margin-top:6px;">
+                   <strong>✅ Diğer Seansları:</strong>
+                   <ul style="padding-left:16px; margin-top:2px;">
+                     ${ev.other_screenings.map(s => `<li>${s.date} ${s.time} - ${s.venue}</li>`).join('')}
+                   </ul>
+                 </div>`
+              : `<div style="font-size:12px; color:#f87171; margin-top:6px;"><strong>🚨 TEK SEANS!</strong> Bu filmin başka bir gösterimi yoktur. Kaçırmayınız!</div>`;
+
+            return `
+              <div class="conflict-item ${isAdded ? 'selected-my-schedule' : ''}">
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <span style="font-weight:700; color:#fb923c; font-size:12px;">📍 ${ev.shortVenue}</span>
+                    <button class="btn-schedule-toggle ${isAdded ? 'added' : ''}" onclick="toggleSchedule('${ev.code}')" title="Seç">
+                      ${isAdded ? '★' : '+'}
+                    </button>
+                  </div>
+                  <h4 style="font-size:15px; font-weight:700; color:#fff; margin-bottom:4px;">${ev.name}</h4>
+                  ${altHtml}
+                </div>
+                <div style="margin-top:12px; display:flex; justify-content:flex-end;">
+                  <a href="${ev.url}" target="_blank" class="btn-buy" style="font-size:12px; padding:4px 10px;">Biletix Sayfası ↗</a>
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          div.innerHTML = `
+            <div class="conflict-header">
+              <h3>⚡ Saat ${t} — ${simultaneous.length} Salon Arasında Tercih Yapmalısınız</h3>
+              <span style="font-size:12.5px; color:#cbd5e1;">Aynı anda gösterimde</span>
+            </div>
+            <div class="conflict-grid">${cardsHtml}</div>
+          `;
+          container.appendChild(div);
+        }
+      });
+
+      if (count === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:40px; color:#94a3b8;">Bu tarihte çakışan seans bulunmamaktadır.</div>';
+      }
+    }
+
+    function renderMasterTable() {
+      const filtered = getFilteredEvents(false); // all dates
+      const tbody = document.getElementById('masterTableBody');
+      tbody.innerHTML = '';
+
+      filtered.forEach(ev => {
+        const tr = document.createElement('tr');
+        const isAdded = mySchedule.includes(ev.code);
+
+        const altText = ev.other_screenings.length > 0 
+          ? `<span style="color:#38bdf8;">${ev.other_screenings.length} seans daha</span>` 
+          : `<span style="color:#f87171; font-weight:600;">Tek Gösterim</span>`;
+
+        const clashText = ev.conflict_count > 0 
+          ? `<span style="color:#f87171; font-weight:600;">⚡ ${ev.conflict_count} salon ile çakışıyor</span>`
+          : `<span style="color:#34d399;">✓ Çakışma yok</span>`;
+
+        tr.innerHTML = `
+          <td><strong>${ev.date}</strong></td>
+          <td><span class="time-badge">${ev.time}</span></td>
+          <td><strong>${ev.name}</strong></td>
+          <td>${ev.shortVenue}</td>
+          <td>${clashText}</td>
+          <td>${altText}</td>
+          <td style="white-space:nowrap;">
+            <a href="${ev.url}" target="_blank" class="btn-buy" style="margin-right:6px;">Biletix</a>
+            <button class="btn-schedule-toggle ${isAdded ? 'added' : ''}" style="display:inline-flex;" onclick="toggleSchedule('${ev.code}')">
+              ${isAdded ? '★' : '+'}
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderMySchedule() {
+      const container = document.getElementById('myScheduleContent');
+      const alerts = document.getElementById('myScheduleAlerts');
+      container.innerHTML = '';
+      alerts.innerHTML = '';
+
+      if (mySchedule.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:60px 20px; color:#94a3b8;">
+            <div style="font-size:48px; margin-bottom:12px;">🎟️</div>
+            <h3 style="color:#fff; font-size:18px; margin-bottom:6px;">Henüz listenize film eklemediniz</h3>
+            <p>Takvimden veya tablodan ilgilendiğiniz seansların yanındaki <strong>+</strong> butonuna tıklayarak kendi kişisel festival takviminizi oluşturabilir ve kendi seçimleriniz arasında çakışma olup olmadığını görebilirsiniz.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const selectedEvents = ALL_EVENTS.filter(e => mySchedule.includes(e.code));
+      selectedEvents.sort((a,b) => (a.date + a.time).localeCompare(b.date + b.time));
+
+      // Check conflicts among chosen events!
+      const slotMap = {};
+      selectedEvents.forEach(e => {
+        const key = e.date + ' ' + e.time;
+        if (!slotMap[key]) slotMap[key] = [];
+        slotMap[key].push(e);
+      });
+
+      const userClashes = Object.keys(slotMap).filter(k => slotMap[k].length > 1);
+
+      if (userClashes.length > 0) {
+        alerts.innerHTML = `
+          <div class="alert-box alert-danger">
+            <span style="font-size:24px;">🚨</span>
+            <div>
+              <strong style="font-size:15px;">DİKKAT: Seçtiğiniz filmler arasında ÇAKIŞMA var!</strong>
+              <p style="margin-top:4px;">Aynı tarih ve saatte birden fazla filme bilet eklediniz. Lütfen birini tercih ediniz veya alternatif seansına kaydırınız:</p>
+              <ul style="margin-top:8px; padding-left:20px;">
+                ${userClashes.map(k => `<li><strong>${k}:</strong> ${slotMap[k].map(x => x.name + ' (' + x.shortVenue + ')').join(' ⚔️ ')}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        `;
+      } else {
+        alerts.innerHTML = `
+          <div class="alert-box alert-info">
+            <span style="font-size:20px;">🎉</span>
+            <div><strong>Tebrikler!</strong> Seçtiğiniz ${selectedEvents.length} film arasında hiçbir saat çakışması bulunmuyor. Kusursuz bir festival maratonu planladınız.</div>
+          </div>
+        `;
+      }
+
+      let html = '<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:14px;">';
+      selectedEvents.forEach(ev => {
+        const isClashing = slotMap[ev.date + ' ' + ev.time].length > 1;
+        html += `
+          <div class="conflict-item" style="${isClashing ? 'border:2px solid #ef4444; background:#450a0a22;' : 'border:1px solid #10b981;'}">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <div>
+                <span class="time-badge">${ev.date} — ${ev.time}</span>
+                <h4 style="font-size:16px; font-weight:700; color:#fff; margin-top:6px;">${ev.name}</h4>
+                <div style="font-size:12.5px; color:#94a3b8; margin-top:4px;">📍 ${ev.venue}</div>
+              </div>
+              <button class="btn-schedule-toggle added" onclick="toggleSchedule('${ev.code}')" title="Kaldır">✕</button>
+            </div>
+            <div style="margin-top:14px; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:12px; font-weight:700; color:${isClashing ? '#f87171' : '#34d399'};">
+                ${isClashing ? '⚠️ Bu saatte başka filminiz var!' : '✅ Sorunsuz Seans'}
+              </span>
+              <a href="${ev.url}" target="_blank" class="btn-buy">Bilet Al ↗</a>
+            </div>
+          </div>
+        `;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+    }
+
+    function showModal(code) {
+      const ev = ALL_EVENTS.find(e => e.code === code);
+      if (!ev) return;
+
+      const modal = document.getElementById('eventModal');
+      const content = document.getElementById('modalContent');
+      const isAdded = mySchedule.includes(ev.code);
+
+      const altList = ev.other_screenings.length > 0
+        ? `<div style="margin-top:16px; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:12px;">
+             <h5 style="color:#38bdf8; font-size:13.5px; margin-bottom:8px; font-weight:700;">🔄 Bu Filmin Diğer Seansları:</h5>
+             <div style="display:flex; flex-direction:column; gap:6px;">
+               ${ev.other_screenings.map(s => `
+                 <div style="display:flex; justify-content:space-between; font-size:12.5px; padding:6px; background:#1e293b; border-radius:4px;">
+                   <span><strong>${s.date} ${s.time}</strong> — ${s.venue}</span>
+                   <a href="${s.url}" target="_blank" style="color:#fb923c; text-decoration:none; font-weight:600;">Biletix ↗</a>
+                 </div>
+               `).join('')}
+             </div>
+           </div>`
+        : `<div style="margin-top:16px; background:#450a0a44; border:1px solid #ef444455; border-radius:8px; padding:12px; color:#fca5a5; font-size:13px;">
+             <strong>🚨 TEK SEANS!</strong> Bu film festival boyunca yalnızca bu salonda ve bu saatte gösterilecektir.
+           </div>`;
+
+      content.innerHTML = `
+        <span class="time-badge" style="font-size:13px;">${ev.date} — ${ev.time}</span>
+        <h2 style="font-size:22px; font-weight:800; color:#fff; margin-top:8px;">${ev.name}</h2>
+        <div style="font-size:14px; color:#cbd5e1; margin-top:4px;">📍 ${ev.venue}</div>
+        <div style="font-size:13px; color:#94a3b8; margin-top:2px;">Etkinlik Kodu: ${ev.code}</div>
+
+        <div style="margin-top:14px; display:flex; gap:8px;">
+          <a href="${ev.url}" target="_blank" class="btn-buy" style="padding:8px 16px; font-size:14px;">Biletix'te Bilet Al ↗</a>
+          <button class="btn-schedule-toggle ${isAdded ? 'added' : ''}" style="width:auto; height:auto; padding:8px 14px; font-size:13px;" onclick="toggleSchedule('${ev.code}'); showModal('${ev.code}')">
+            ${isAdded ? '★ Programımdan Çıkar' : '+ Programıma Ekle'}
+          </button>
+        </div>
+
+        ${altList}
+      `;
+
+      modal.classList.add('open');
+    }
+
+    function closeModal(e) {
+      document.getElementById('eventModal').classList.remove('open');
+    }
+
+    // Init
+    saveSchedule();
+    renderCurrentView();
+  </script>
+
+
+</body></html>
