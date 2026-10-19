@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="tr"><head>
+<html lang="tr">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antalya Altın Portakal Film Festivali - Takvim &amp; Çakışma Analizi</title>
+  <title>Antalya Altın Portakal Film Festivali - Takvim & Çakışma Analizi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #ea580c;
@@ -204,16 +205,6 @@
       border-color: var(--primary);
     }
 
-    .filter-select {
-      background: #1e293b;
-      border: 1px solid var(--card-border);
-      color: #fff;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      outline: none;
-    }
-
     .badge-checkbox {
       display: inline-flex;
       align-items: center;
@@ -314,11 +305,6 @@
 
     .event-card.single-screening {
       background: linear-gradient(145deg, #1e293b, #2a1b24);
-    }
-
-    .event-card.highlighted {
-      outline: 2px solid #f97316;
-      box-shadow: 0 0 16px rgba(249, 115, 22, 0.5);
     }
 
     .event-card.selected-my-schedule {
@@ -599,17 +585,17 @@
   <div class="tabs-wrapper">
     <div class="container">
       <div class="tabs">
-        <button class="tab-btn" onclick="switchView('calendar')">
+        <button class="tab-btn active" data-view="calendar" onclick="switchView('calendar')">
           <span>📅 Takvim / Salon Matrisi</span>
         </button>
-        <button class="tab-btn" onclick="switchView('conflicts')">
-          <span>⚡ Çakışma Analizi &amp; Karşılaştırma</span>
+        <button class="tab-btn" data-view="conflicts" onclick="switchView('conflicts')">
+          <span>⚡ Çakışma Analizi & Karşılaştırma</span>
         </button>
-        <button class="tab-btn" onclick="switchView('table')">
+        <button class="tab-btn" data-view="table" onclick="switchView('table')">
           <span>📋 Tüm Seanslar Tablosu (196)</span>
         </button>
-        <button class="tab-btn active" onclick="switchView('my-schedule')">
-          <span>⭐ Seçtiğim Filmler &amp; Planlayıcı (<span id="myCount">0</span>)</span>
+        <button class="tab-btn" data-view="my-schedule" onclick="switchView('my-schedule')">
+          <span>⭐ Seçtiğim Filmler & Planlayıcı (<span id="myCount">0</span>)</span>
         </button>
       </div>
     </div>
@@ -622,10 +608,10 @@
       <div>
         <label style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">Gün Seçin:</label>
         <div class="day-selector" id="daySelector">
-          <button class="day-btn" data-date="2026-10-25" onclick="selectDate('2026-10-25')">25 Ekim Paz (28)</button>
+          <button class="day-btn active" data-date="2026-10-25" onclick="selectDate('2026-10-25')">25 Ekim Paz (28)</button>
           <button class="day-btn" data-date="2026-10-26" onclick="selectDate('2026-10-26')">26 Ekim Pzt (34)</button>
           <button class="day-btn" data-date="2026-10-27" onclick="selectDate('2026-10-27')">27 Ekim Sal (31)</button>
-          <button class="day-btn active" data-date="2026-10-28" onclick="selectDate('2026-10-28')">28 Ekim Çar (35)</button>
+          <button class="day-btn" data-date="2026-10-28" onclick="selectDate('2026-10-28')">28 Ekim Çar (35)</button>
           <button class="day-btn" data-date="2026-10-29" onclick="selectDate('2026-10-29')">29 Ekim Per (35)</button>
           <button class="day-btn" data-date="2026-10-30" onclick="selectDate('2026-10-30')">30 Ekim Cum (33)</button>
         </div>
@@ -644,14 +630,14 @@
       </div>
     </div>
 
-    <!-- VIEW 1: CALENDAR TIMETABLE MATRIX -->
-    <div id="viewCalendar" style="display: none;">
+    <!-- VIEW 1: CALENDAR TIMETABLE MATRIX (Default Open) -->
+    <div id="viewCalendar" style="display: block;">
       <div class="alert-box alert-info">
         <span style="font-size: 18px;">💡</span>
         <div>
           <strong>Nasıl Kullanılır?</strong> Tablodaki her sütun festivalin bir salonunu, satırlar ise seans başlangıç saatlerini gösterir. 
           <span style="color:#f87171; font-weight:700;">Kırmızı rozetli</span> seanslar o saatte diğer salonlarla çakışan filmlerdir. 
-          Bir filme tıklayarak filmin diğer günlerdeki alternatif seanslarını görebilir, <strong>⭐</strong> ikonuna basarak kendi festival programınıza ekleyebilirsiniz.
+          Bir filme tıklayarak filmin diğer günlerdeki alternatif seanslarını görebilir, <strong>⭐</strong> butonuna basarak kendi festival programınıza ekleyebilirsiniz.
         </div>
       </div>
 
@@ -680,7 +666,7 @@
       <div class="alert-box alert-danger">
         <span style="font-size: 18px;">⚠️</span>
         <div>
-          <strong>Çakışma Analizi &amp; Kritik Tercihler:</strong> 
+          <strong>Çakışma Analizi & Kritik Tercihler:</strong> 
           Aynı saatte birden fazla salonda başlayan seanslar aşağıda saat saat gruplanmıştır. 
           Eğer bir film <strong>"🚨 Tek Seans"</strong> etiketi taşıyorsa festival boyunca başka gösterimi yoktur! 
           <strong>"✅ Alternatif Seans Var"</strong> etiketi taşıyan filmleri ise başka bir günde izleyebilirsiniz.
@@ -714,7 +700,7 @@
     </div>
 
     <!-- VIEW 4: MY SCHEDULE -->
-    <div id="viewMySchedule" style="display: block;">
+    <div id="viewMySchedule" style="display: none;">
       <div id="myScheduleAlerts"></div>
       <div id="myScheduleContent">
         <!-- Dynamically populated -->
@@ -726,7 +712,7 @@
   <!-- MODAL FOR FILM DETAILS -->
   <div class="modal-backdrop" id="eventModal" onclick="closeModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal()">×</button>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
       <div id="modalContent"></div>
     </div>
   </div>
@@ -767,8 +753,13 @@
 
     function switchView(view) {
       currentView = view;
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      event.currentTarget.classList.add('active');
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        if (b.getAttribute('data-view') === view) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
 
       document.getElementById('viewCalendar').style.display = view === 'calendar' ? 'block' : 'none';
       document.getElementById('viewConflicts').style.display = view === 'conflicts' ? 'block' : 'none';
@@ -781,7 +772,11 @@
     function selectDate(date) {
       currentDate = date;
       document.querySelectorAll('.day-btn').forEach(b => {
-        b.classList.toggle('active', b.getAttribute('data-date') === date);
+        if (b.getAttribute('data-date') === date) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
       });
       renderCurrentView();
     }
@@ -835,7 +830,6 @@
 
       times.forEach(t => {
         const eventsAtTime = filtered.filter(e => e.time === t);
-        // Only show row if at least one event matches filter or if no filters
         const allAtTime = dayEvents.filter(e => e.time === t);
         if (eventsAtTime.length === 0 && (document.getElementById('searchInput').value || document.getElementById('onlyClashCheckbox').checked || document.getElementById('onlySingleCheckbox').checked)) {
           return;
@@ -1108,10 +1102,10 @@
       document.getElementById('eventModal').classList.remove('open');
     }
 
-    // Init
+    // Default initialization: Always open first tab (calendar) and first day (25 Oct)
     saveSchedule();
-    renderCurrentView();
+    selectDate('2026-10-25');
+    switchView('calendar');
   </script>
-
-
-</body></html>
+</body>
+</html>
